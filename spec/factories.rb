@@ -12,4 +12,12 @@ FactoryGirl.define do
     parent_id nil
     user
   end
+
+  factory :comment do
+    sequence :body do |i|
+      "test body #{i}"
+    end
+    user
+    post
+  end
 end

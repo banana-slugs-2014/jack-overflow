@@ -1,1 +1,1 @@
- 'belongs_to :parent, :class_name => "Category"
+# 'belongs_to :parent, :class_name => "Category"

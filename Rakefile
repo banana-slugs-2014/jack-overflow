@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-IntroToRails::Application.load_tasks
+JackOverflow::Application.load_tasks

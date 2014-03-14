@@ -5,6 +5,8 @@ let(:user){FactoryGirl.create :user}
 let(:my_question){FactoryGirl.create :post}
 let(:my_answer){FactoryGirl.create :post, parent_id: my_question.id}
 let(:attribs){FactoryGirl.attributes_for :post, body: "dat update"}
+let(:answer_attribs){FactoryGirl.attributes_for :post, parent_id: 1}
+
   context "#index" do
     before(:each){ get :index }
     it{ returns_valid_response }
@@ -96,6 +98,55 @@ let(:attribs){FactoryGirl.attributes_for :post, body: "dat update"}
           }.to_not change{my_answer.body}
       end
     end
+  end
+
+  context "#create" do
+    context 'creating a question' do
+
+      context "should increase the Post count with valid params" do
+        before(:each){ post :create, post: attribs }
+        it { returns_valid_redirect }
+        it "should increase the Post count" do
+          expect{
+            post :create, post: attribs
+          }.to change{Post.count}.by(1)
+        end
+      end
+
+      context 'should not change the Post count with invalid params' do
+        before(:each){ post :create, post: {title: "red", body: ""} }
+        it { returns_valid_redirect }
+        it "should increase the Post count" do
+          expect{
+            post :create, post: {title: "red", body: ""}
+          }.to_not change{Post.count}
+        end
+      end
+    end
+
+    context 'creating an answer' do
+
+      context "should increase the Post count with valid params" do
+        before(:each){ post :create, post: answer_attribs }
+        it { returns_valid_redirect }
+        it "should increase the Post count" do
+          expect{
+            post :create, post: answer_attribs
+          }.to change{Post.count}.by(1)
+        end
+      end
+
+      context 'should not change the Post count with invalid params' do
+        before(:each){ post :create, post: {title: "red", body: ""} }
+        it { returns_valid_redirect }
+        it "should increase the Post count" do
+          expect{
+            post :create, post: {title: "red", body: ""}
+          }.to_not change{Post.count}
+        end
+      end
+    end
+
   end
 
 end

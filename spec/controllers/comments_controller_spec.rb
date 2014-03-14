@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe CommentsController do
   render_views
+
   let(:comment) { FactoryGirl.create(:comment) }
   let(:attribs) { FactoryGirl.attributes_for(:comment) }
   let(:bad_attribs) { { body: '' } }

@@ -8,7 +8,7 @@ class UsersController < ActionController::Base
   end
 
   def show
-    @user = User.find(params[:user])
+    @user = !params[:id].nil? ? User.find(params[:user]) : User.find(session[:user_id])
   end
 
   def create

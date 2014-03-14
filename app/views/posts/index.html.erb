@@ -1,6 +1,6 @@
 <div>
-  <%= @question.each do |question| %>
-    <%= link_to "#{question.title}" post_path(question.id)  %>
+  <% @questions.each do |question| %>
+    <%= link_to question.title, post_path(question.id)  %>
   <% end %>
 </div>
 

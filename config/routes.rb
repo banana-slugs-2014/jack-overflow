@@ -1,6 +1,7 @@
 JackOverflow::Application.routes.draw do
 
   root to: "posts#index"
+  post '/posts', to: "posts#create", as: "create_post"
 
   resources :posts, except: :destroy do
     resources :comments, except: [:index, :show]
@@ -14,6 +15,4 @@ JackOverflow::Application.routes.draw do
   resources :users, except: [:new, :show]
   get '/profile', to: 'users#show'
   get '/signup', to: 'users#new'
-
-
 end

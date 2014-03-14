@@ -126,6 +126,10 @@ GEM
       websocket (~> 1.0.4)
     shoulda-matchers (2.5.0)
       activesupport (>= 3.0.0)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
     slop (3.5.0)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -162,4 +166,5 @@ DEPENDENCIES
   rspec-rails
   selenium-webdriver
   shoulda-matchers
+  simplecov
   uglifier (>= 1.0.3)

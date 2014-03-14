@@ -7,5 +7,9 @@ class Post < ActiveRecord::Base
   has_many :comments
   belongs_to :user
   validates_presence_of :body
+
+  def self.select_options
+    descendants.map{ |c| c.to_s }.sort
+  end
 end
 

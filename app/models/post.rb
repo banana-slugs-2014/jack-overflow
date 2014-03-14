@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
 
   has_many :answers, class_name: 'Post',
                      foreign_key: "parent_id"
+  has_many :comments
   belongs_to :user
   validates_presence_of :body
 end

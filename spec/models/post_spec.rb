@@ -1,4 +1,4 @@
-require 'spec_helper'
+ require 'spec_helper'
 
 describe Post do
   context "validations" do
@@ -7,8 +7,9 @@ describe Post do
 
   context "associations" do
     it {should belong_to :user}
-    it {should belong_to :parent}
+    it {should belong_to :question}
     it {should have_many :answers}
+    it {should have_many :votes}
   end
 
 end

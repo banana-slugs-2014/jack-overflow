@@ -15,4 +15,6 @@ JackOverflow::Application.routes.draw do
   resources :users, except: [:new, :show]
   get '/profile', to: 'users#show'
   get '/signup', to: 'users#new'
+
+  resources :votes, only: [:create, :update]
 end

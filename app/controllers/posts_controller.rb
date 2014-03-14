@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @questions = Post.where(parent_id: nil)
+    @questions = Post.where(question_id: nil)
   end
 
   def show
@@ -30,10 +30,10 @@ class PostsController < ApplicationController
   def update #helper method to determine Q/A?
     @post = Post.find(params[:id])
     if @post.update_attributes(params[:post])
-      if @post.parent_id.nil?
+      if @post.question_id.nil?
         redirect_to(post_path(@post.id))
       else
-        redirect_to(post_path(@post.parent_id))
+        redirect_to(post_path(@post.question_id))
       end
     else
       redirect_to(edit_post_path(params[:id]))

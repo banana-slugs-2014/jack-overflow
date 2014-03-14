@@ -15,7 +15,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    p params
     @post =Post.new(params[:post])
     if @post.save
       redirect_to root_path

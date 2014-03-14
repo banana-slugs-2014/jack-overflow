@@ -10,8 +10,18 @@ class PostsController < ApplicationController
     @answers = @question.answers
   end
 
-  def edit
+  def new
+    @post = Post.new
+  end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    redirect_to :back if @post.update_attributes(params)
+    redirect_to edit_post_path(params[:id])
   end
 
 

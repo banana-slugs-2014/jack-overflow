@@ -1,0 +1,13 @@
+<div>
+  <%= @question.title %>
+  <%= @question.body %>
+</div>
+
+
+<div>
+  <%= @answers.each do |answer| %>
+    <%= answer.body %>
+  <% end %>
+
+</div>
+

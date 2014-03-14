@@ -37,17 +37,32 @@ let!(:my_answer){FactoryGirl.create :post, parent_id: my_question.id}
     end
   end
 
+  context '#edit' do
+    context "when editting a question" do
+      before(:each){ get :edit, id: my_question.id }
+      it{ returns_valid_response }
+      it "it should assign @question to my_question" do
+        expect(assigns(:post)).to eq my_question
+      end
+    end
 
+    context "when editting a question" do
+      before(:each){ get :edit, id: my_answer.id }
+      it{ returns_valid_response }
+      it "it should assign @question to my_answer" do
+        expect(assigns(:post)).to eq my_answer
+      end
+    end
+  end
 
-
-
-
-
-
-
-
-
-  describe "A logged in user should be able to make a post (question)" do
+  context '#new' do
+    context "when creating a question" do
+      before(:each){ get :new }
+      it { returns_valid_response }
+      it "it should create a new instance of post" do
+        expect(assigns :post).to be_a_new Post
+      end
+    end
   end
 
 end

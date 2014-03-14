@@ -23,7 +23,7 @@ describe UsersController do
   end
 
   context "#show" do
-    before(:each){ get :show, user: myuser }
+    before(:each){ get :show, id: myuser, user: myuser }
     it{expect(response).to be_ok }
     it "should show the current user" do
       expect(assigns(:user)).to eq(myuser)

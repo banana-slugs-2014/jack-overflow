@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Categories", :js => true do
+describe "Categories" do
 
   let!(:user ) { FactoryGirl.create :user }
   describe "sign in" do

@@ -9,7 +9,7 @@ FactoryGirl.define do
   factory :post do
     title { Faker::Lorem.word }
     body { Faker::Lorem.word }
-    parent_id nil
+    question_id nil
     user
   end
 
@@ -17,6 +17,12 @@ FactoryGirl.define do
     sequence :body do |i|
       "test body #{i}"
     end
+    user
+    post
+  end
+
+  factory :vote do
+    value 1
     user
     post
   end

@@ -8,5 +8,9 @@ class Post < ActiveRecord::Base
   has_many :votes
   belongs_to :user
   validates_presence_of :body
+
+  def vote_count
+    self.votes.pluck(:value).inject(&:+)
+  end
 end
 

@@ -3,15 +3,15 @@ describe PostsController do
 
 let(:user){FactoryGirl.create :user}
 let(:my_question){FactoryGirl.create :post}
-let(:my_answer){FactoryGirl.create :post, parent_id: my_question.id}
+let(:my_answer){FactoryGirl.create :post, question_id: my_question.id}
 let(:attribs){FactoryGirl.attributes_for :post, body: "dat update"}
-let(:answer_attribs){FactoryGirl.attributes_for :post, parent_id: 1}
+let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
 
   context "#index" do
     before(:each){ get :index }
     it{ returns_valid_response }
     it "should assign @posts to every post that is a question" do
-      expect(assigns(:questions)).to eq Post.where(parent_id: nil)
+      expect(assigns(:questions)).to eq Post.where(question_id: nil)
     end
   end
 

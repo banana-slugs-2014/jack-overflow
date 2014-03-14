@@ -10,25 +10,24 @@ def returns_valid_redirect
 end
 
 let(:user){FactoryGirl.create :user}
-let(:my_question){FactoryGirl.create :post}
-let(:my_answer){FactoryGirl.create :post, parent_id: my_question.id}
+let!(:my_question){FactoryGirl.create :post}
+let!(:my_answer){FactoryGirl.create :post, parent_id: my_question.id}
   context "#index" do
     before(:each){ get :index }
     it{ returns_valid_response }
 
     it "should assign @posts to every post that is a question" do
-      expect(assigns(:questions)).to eq Post.where(parent.id != nil )
+
+      expect(assigns(:questions)).to eq Post.where(parent_id: nil)
     end
   end
 
-
-
   context '#show' do
-
-  before(:each){ get :show, id: post1.id }
-    xit{ returns_valid_response }
-
-    xit "should show a single post(question) with any child posts" do
+    context "when :id is the id of a question" do
+    before(:each){ get :show, id: my_question.id }
+      xit{ returns_valid_response }
+      xit "it should assign @question to my_question" do
+      end
     end
 
   end

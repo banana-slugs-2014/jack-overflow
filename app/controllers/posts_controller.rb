@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   def index
-    @questions = 1
+    @questions = Post.where(parent_id: nil)
   end
+
+
 end

@@ -1,23 +1,14 @@
 require 'spec_helper'
 describe PostsController do
 
-def returns_valid_response
-  expect(response).to be_ok
-end
-
-def returns_valid_redirect
-  it{ expect(response).to be_redirect }
-end
-
 let(:user){FactoryGirl.create :user}
 let!(:my_question){FactoryGirl.create :post}
 let!(:my_answer){FactoryGirl.create :post, parent_id: my_question.id}
+let(:attribs){FactoryGirl.attributes_for :post, body: "dat update"}
   context "#index" do
     before(:each){ get :index }
     it{ returns_valid_response }
-
     it "should assign @posts to every post that is a question" do
-
       expect(assigns(:questions)).to eq Post.where(parent_id: nil)
     end
   end
@@ -33,7 +24,7 @@ let!(:my_answer){FactoryGirl.create :post, parent_id: my_question.id}
 
     context "when :id is invalid" do
       before(:each){ get :show, id: "red" }
-      it { expect(response).to be_redirect }
+      it { returns_valid_redirect }
     end
   end
 
@@ -46,7 +37,7 @@ let!(:my_answer){FactoryGirl.create :post, parent_id: my_question.id}
       end
     end
 
-    context "when editting a question" do
+    context "when editting an answer" do
       before(:each){ get :edit, id: my_answer.id }
       it{ returns_valid_response }
       it "it should assign @question to my_answer" do
@@ -61,6 +52,48 @@ let!(:my_answer){FactoryGirl.create :post, parent_id: my_question.id}
       it { returns_valid_response }
       it "it should create a new instance of post" do
         expect(assigns :post).to be_a_new Post
+      end
+    end
+  end
+
+  context '#update' do
+    context 'when updating a question with valid attributes' do
+    before(:each){ put :update, id: my_question.id, post: attribs }
+      it { returns_valid_redirect }
+      it "should update a post" do
+        expect{
+          my_question.reload.body
+          }.to change{my_question.body}.to(attribs[:body])
+      end
+    end
+
+    context 'when updating a answer with valid attributes' do
+    before(:each){ put :update, id: my_answer.id, post: attribs }
+      it { returns_valid_redirect }
+      it "should update a post" do
+        expect{
+          my_answer.reload.body
+          }.to change{my_answer.body}.to(attribs[:body])
+      end
+    end
+
+    context 'when updating a question with invalid attributes' do
+      before(:each){ put :update, id: my_question.id, post: {body: ""} }
+      it { returns_valid_redirect }
+      it "should not update a post" do
+        expect{
+          my_question.reload.body
+          }.to_not change{my_question.body}
+      end
+    end
+
+    context 'when updating a answer with invalid attributes' do
+      before(:each){ put :update, id: my_answer.id, post: {body: ""} }
+      it { returns_valid_redirect }
+      it "should not update a post" do
+        expect{
+          my_answer.reload.body
+          }.to_not change{my_answer.body}
       end
     end
   end

@@ -10,5 +10,4 @@ JackOverflow::Application.routes.draw do
   get '/profile', to: 'users#show'
   get '/signup', to: 'users#new'
 
-
 end

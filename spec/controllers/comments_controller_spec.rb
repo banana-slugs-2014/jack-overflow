@@ -6,21 +6,21 @@ describe CommentsController do
   let(:attribs) { FactoryGirl.attributes_for(:comment) }
   let(:bad_attribs) { { body: '' } }
   let(:comment_error) { 'Invalid comment!' }
-  let(:parent) { FactoryGirl.create(:post) }
+  let(:question) { FactoryGirl.create(:post) }
 
   describe "#new" do
     it "is ok" do
-      get :new, post_id: parent.id
+      get :new, post_id: question.id
       expect(response).to be_success
     end
-    
+
     it "renders an empty form" do
-      get :new, post_id: parent.id
+      get :new, post_id: question.id
       expect(response.body).to include 'form'
     end
 
     it 'assigns @comment to Comment' do
-      get :new, post_id: parent.id
+      get :new, post_id: question.id
       expect(assigns(:comment)).to be_a_new Comment
     end
   end
@@ -28,50 +28,50 @@ describe CommentsController do
   describe "#create" do
     context 'valid comment' do
       it "redirects to the comment's post" do
-        post :create, post_id: parent.id, comment: attribs
-        expect(response).to redirect_to(post_path(parent))
+        post :create, post_id: question.id, comment: attribs
+        expect(response).to redirect_to(post_path(question))
       end
 
       it "adds a comment to the database" do
-        expect { 
-        post :create, post_id: parent.id, comment: attribs }
+        expect {
+        post :create, post_id: question.id, comment: attribs }
         .to change{Comment.count}.by(1)
       end
     end
 
     context 'blank body invalid comment' do
       it "redirects to the comment's post" do
-        post :create, post_id: parent.id, comment: bad_attribs
-        expect(response).to redirect_to(post_path(parent))
+        post :create, post_id: question.id, comment: bad_attribs
+        expect(response).to redirect_to(post_path(question))
       end
 
       it "does not add a comment to the database" do
-        expect { 
-        post :create, post_id: parent.id, comment: bad_attribs }
+        expect {
+        post :create, post_id: question.id, comment: bad_attribs }
         .not_to change{Comment.count}
       end
     end
-    
+
   end
 
   describe "#edit" do
     it "is ok" do
-      get :edit, id: comment.id, post_id: parent.id
+      get :edit, id: comment.id, post_id: question.id
       expect(response).to be_success
     end
 
     it "renders a form" do
-      get :edit, id: comment.id, post_id: parent.id
+      get :edit, id: comment.id, post_id: question.id
       expect(response.body).to include 'form'
     end
 
     it 'which is prepopulated' do
-      get :edit, id: comment.id, post_id: parent.id
+      get :edit, id: comment.id, post_id: question.id
       expect(response.body).to include comment.body
     end
 
     it 'assigns @comment to the Comment found by id' do
-      get :edit, id: comment.id, post_id: parent.id
+      get :edit, id: comment.id, post_id: question.id
       expect(assigns(:comment)).to eql comment
     end
   end

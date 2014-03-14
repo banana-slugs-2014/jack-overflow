@@ -102,6 +102,7 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
 
   context "#create" do
     context 'creating a question' do
+    before(:each){ session[:user_id] = user.id }
 
       context "should increase the Post count with valid params" do
         before(:each){ post :create, post: attribs }
@@ -125,6 +126,7 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
     end
 
     context 'creating an answer' do
+    before(:each){ session[:user_id] = user.id }
 
       context "should increase the Post count with valid params" do
         before(:each){ post :create, post: answer_attribs }
@@ -145,8 +147,8 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
           }.to_not change{Post.count}
         end
       end
+
+
     end
-
   end
-
 end

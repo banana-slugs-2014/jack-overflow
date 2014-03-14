@@ -13,6 +13,9 @@ JackOverflow::Application.routes.draw do
   get '/profile', to: 'users#show'
   get '/signup', to: 'users#new'
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> Adds coverage as well as sessions controller changes
 end

@@ -2,8 +2,8 @@ require 'spec_helper'
 describe PostsController do
 
 let(:user){FactoryGirl.create :user}
-let!(:my_question){FactoryGirl.create :post}
-let!(:my_answer){FactoryGirl.create :post, parent_id: my_question.id}
+let(:my_question){FactoryGirl.create :post}
+let(:my_answer){FactoryGirl.create :post, parent_id: my_question.id}
 let(:attribs){FactoryGirl.attributes_for :post, body: "dat update"}
   context "#index" do
     before(:each){ get :index }
@@ -58,7 +58,7 @@ let(:attribs){FactoryGirl.attributes_for :post, body: "dat update"}
 
   context '#update' do
     context 'when updating a question with valid attributes' do
-    before(:each){ put :update, id: my_question.id, post: attribs }
+    before(:each){ put :update, id: my_question.id, post: {body: attribs[:body]} }
       it { returns_valid_redirect }
       it "should update a post" do
         expect{
@@ -68,7 +68,7 @@ let(:attribs){FactoryGirl.attributes_for :post, body: "dat update"}
     end
 
     context 'when updating a answer with valid attributes' do
-    before(:each){ put :update, id: my_answer.id, post: attribs }
+    before(:each){ put :update, id: my_answer.id, post: {body: attribs[:body]} }
       it { returns_valid_redirect }
       it "should update a post" do
         expect{

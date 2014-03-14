@@ -25,14 +25,18 @@ let!(:my_answer){FactoryGirl.create :post, parent_id: my_question.id}
   context '#show' do
     context "when :id is the id of a question" do
     before(:each){ get :show, id: my_question.id }
-      xit{ returns_valid_response }
-      xit "it should assign @question to my_question" do
+      it{ returns_valid_response }
+      it "it should assign @question to my_question" do
+        expect(assigns(:question)).to eq my_question
       end
     end
 
+    context "when :id is invalid" do
+      before(:each){ get :show, id: "red" }
+      it { expect(response).to be_redirect }
+    end
   end
 
-  #context ''
 
 
 

@@ -1,0 +1,9 @@
+<%= form_for :post, url: create_post_path do |f| %>
+
+  <%= f.hidden_field :parent_id, {value: question_id} %>
+
+  <%= f.label :body %><p>
+  <%= f.text_area :body %><br>
+
+  <%= f.submit value: "Submit Answer" %>
+<% end %>

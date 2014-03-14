@@ -20,4 +20,10 @@ FactoryGirl.define do
     user
     post
   end
+
+  factory :vote do
+    value 1
+    user
+    post
+  end
 end

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+
   def index
     @questions = Post.where(question_id: nil)
   end
@@ -16,7 +17,9 @@ class PostsController < ApplicationController
 
   def create
     @post =Post.new(params[:post])
-    if @post.save
+    if logged_in? && @post.save
+      user = User.find(session[:user_id])
+      user.posts << @post
       redirect_to root_path
     else
       redirect_to root_path

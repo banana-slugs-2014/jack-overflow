@@ -14,15 +14,24 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def create
+
+  end
+
   def edit
     @post = Post.find(params[:id])
   end
 
-  def update
+  def update #helper method to determine Q/A?
     @post = Post.find(params[:id])
-    redirect_to :back if @post.update_attributes(params)
-    redirect_to edit_post_path(params[:id])
+    if @post.update_attributes(params[:post])
+      if @post.parent_id.nil?
+        redirect_to(post_path(@post.id))
+      else
+        redirect_to(post_path(@post.parent_id))
+      end
+    else
+      redirect_to(edit_post_path(params[:id]))
+    end
   end
-
-
 end

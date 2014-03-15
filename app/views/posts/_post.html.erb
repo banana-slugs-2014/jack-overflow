@@ -5,5 +5,10 @@
   <% post.comments.each do |comment| %>
     <%= render "comments/comment", comment: comment %>
   <% end %>
+
+
+  <% if session[:user_id] == post.user_id %>
+    <%= link_to "Mark as Favorite", post_path(post), {:action => :update}, :method => :put, post: post  %>
+  <% end %>
   <%= link_to 'New Comment', new_post_comment_path(post) %>
 </div>

@@ -1,5 +1,8 @@
 <div class="post">
   <h1><%= post.title ? post.title : "" %></h1>
+  <% if post.favorite_id %>
+    <strong><%= Marked as Favorite Answer  %></strong>
+  <% end %>
   <p><%= post.body %></p>
   <%= render "votes/vote_count", post: post %>
   <% post.comments.each do |comment| %>

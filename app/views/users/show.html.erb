@@ -4,9 +4,11 @@
   <%= @user.username %>
 
   <% if @user.posts %>
-    Here are your posts!
+    Here are your questions!
     <% @user.posts.each do |user_post|  %>
-      <div class = 'post'><%= render 'shared/post' , :post => user_post %></div>
+      <% if user_post.question_id.nil? %>
+        <br><%= link_to user_post.body, post_path(user_post.id) %>
+        <% end %>
     <% end %>
   <% end  %>
 

@@ -24,7 +24,7 @@ describe "Favorites", :js => true do
 
       click_on 'enim'
       click_on 'Mark as Favorite'.first
-      expect( page ).to have_content("(marked as favorite)")
+      expect( page ).to have_content("Marked as Favorite")
 
 
     end

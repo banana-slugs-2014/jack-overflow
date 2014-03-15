@@ -43,7 +43,9 @@ class PostsController < ApplicationController
   end
 
   def update #helper method to determine Q/A?
+
     @post = Post.find(params[:id])
+    @post.question.favorite_id = @post.id if params.length == 1  #Bifurcate update route to allow for updating
     if @post.update_attributes(params[:post])
       if @post.question_id.nil?
         redirect_to(post_path(@post.id))

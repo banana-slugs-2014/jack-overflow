@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
 
   def trending
     # youth * number of comments
-    ( 1/ ( Time.now - created_at ) ) * comments.count
+    ( 1/ ( Time.now - created_at ) ) * (comments.count + 1)
   end
 
   def self.select_options

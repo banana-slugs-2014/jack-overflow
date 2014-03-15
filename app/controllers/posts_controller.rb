@@ -16,7 +16,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post =Post.new(params[:post])
+    if params[:post][:question_id]
+      @post = Answer.new(params[:post])
+    else
+      @post = Question.new(params[:post])
+    end
+
     if logged_in? && @post.save
       user = User.find(session[:user_id])
       user.posts << @post

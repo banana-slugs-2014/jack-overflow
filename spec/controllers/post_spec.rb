@@ -61,7 +61,7 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
   context '#update' do
     context 'when updating a question' do
 
-      context 'with valid attributes' do
+      context 'with valid params' do
         before(:each){ put :update, id: my_question.id, post: {body: attribs[:body]} }
         it { returns_valid_redirect }
         it "should update a post" do
@@ -71,7 +71,7 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
         end
       end
 
-      context 'with invalid attributes' do
+      context 'with invalid params' do
         before(:each){ put :update, id: my_question.id, post: {body: ""} }
         it { returns_valid_redirect }
         it "should not update a post" do
@@ -84,7 +84,7 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
   end
 
   context 'when updating a answer' do
-    context 'with valid attributes' do
+    context 'with valid params' do
       before(:each){ put :update, id: my_answer.id, post: {body: attribs[:body]} }
       it { returns_valid_redirect }
       it "should update a post" do
@@ -95,7 +95,7 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
     end
 
 
-    context 'with invalid attributes' do
+    context 'with invalid params' do
       before(:each){ put :update, id: my_answer.id, post: {body: ""} }
       it { returns_valid_redirect }
       it "should not update a post" do
@@ -113,6 +113,10 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
       context "with valid params" do
         before(:each){ post :create, post: attribs }
         it { returns_valid_redirect }
+        it "should be of the class 'Question'" do
+          expect(assigns(:post)).to be_a(Question)
+        end
+
         it "should increase the Post count" do
           expect{
             post :create, post: attribs
@@ -137,6 +141,10 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
       context "with valid params" do
         before(:each){ post :create, post: answer_attribs }
         it { returns_valid_redirect }
+        it "should be of the class 'Answer'" do
+          expect(assigns(:post)).to be_a(Answer)
+        end
+
         it "should increase the Post count" do
           expect{
             post :create, post: answer_attribs
@@ -153,6 +161,8 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
           }.to_not change{Post.count}
         end
       end
+
+
 
 
 

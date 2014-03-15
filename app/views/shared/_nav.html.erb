@@ -1,0 +1,13 @@
+<nav>
+  <ul>
+    <li><%= link_to 'Ask Jack', new_post_path %></li>
+    <li><%= link_to 'JackOverflow',  root_path %></li>
+  <% if user %>
+    <li><%= link_to "#{session[:username]}", profile_path %></li>
+    <li><%= link_to 'Sign Out', sign_out_path, method: :destroy %></li>
+  <% else %>
+    <li><%= link_to 'Sign Up', sign_up_path %></li>
+    <li><%= link_to 'Sign In', sign_in_path %></li>
+  <% end %>
+  </ul>
+</nav>

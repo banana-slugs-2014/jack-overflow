@@ -1,16 +1,13 @@
-<div>
-  <h1><%= @question.title %></h1>
-  <p><%= @question.body %></p>
-</div>
+<div class="question">
+  <%= render "posts/post", post:  @question %>
 
+  <div class="answers">
+    <% @answers.each do |answer| %>
+      <%= render "posts/post", post: answer %>
+    <% end %>
 
-<div>
-  <%= @answers.each do |answer| %>
-    <%= answer.body %><br>
-  <% end %>
-
-  <div>
     <%= render "/shared/answers_form", question_id: @question.id %>
   </div>
+
 </div>
 

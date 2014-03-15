@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :body
 
   def vote_count
-    votes.pluck(:value).inject(&:+)
+    grab_votes ? grab_votes : "0"
   end
 
   def trending
@@ -17,6 +17,12 @@ class Post < ActiveRecord::Base
 
   def self.select_options
     descendants.map{ |c| c.to_s }.sort
+  end
+
+  private
+
+  def grab_votes
+    votes.pluck(:value).inject(&:+)
   end
 end
 

@@ -8,13 +8,13 @@ JackOverflow::Application.routes.draw do
   end
 
   resources :sessions, only: [:new, :create, :destroy]
-  get '/signin', to: 'sessions#new'
-  post '/signout', to: 'sessions#destroy'
+  get '/signin', to: 'sessions#new', as: 'sign_in'
+  post '/signout', to: 'sessions#destroy', as: 'sign_out'
 
 
   resources :users, except: [:new, :show]
-  get '/profile', to: 'users#show'
-  get '/signup', to: 'users#new'
+  get '/profile', to: 'users#show', as: 'profile'
+  get '/signup', to: 'users#new', as: 'sign_up'
 
   resources :votes, only: [:create, :update]
 end

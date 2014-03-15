@@ -1,4 +1,4 @@
-class UsersController < ActionController::Base
+class UsersController < ApplicationController
   def index
     @users = User.all
   end
@@ -14,7 +14,7 @@ class UsersController < ActionController::Base
   def create
     @user = User.new(username: params[:user][:username])
     @user.password = params[:user][:password]
-    @user.save ? (redirect_to user_path(@user)) : (render :new)
+    @user.save ? (redirect_to root_path) : (render :new)
   end
 
   def edit

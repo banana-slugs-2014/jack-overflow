@@ -1,0 +1,9 @@
+<div class="post">
+  <h1><%= post.title ? post.title : "" %></h1>
+  <p><%= post.body %></p>
+  <%= render "votes/vote_count", post: post %>
+  <% post.comments.each do |comment| %>
+    <%= render "comments/comment", comment: comment %>
+  <% end %>
+  <%= link_to 'New Comment', new_post_comment_path(post) %>
+</div>

@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= render "shared/nav", user: session[:user_id] %>
 <%= yield %>
 
 </body>

@@ -153,9 +153,6 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
           }.to_not change{Post.count}
         end
       end
-
-
-
     end
   end
 end

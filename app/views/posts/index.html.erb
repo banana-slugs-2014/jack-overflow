@@ -1,10 +1,5 @@
-<div>
-  <ul>
+<div class="questions_list">
   <% @questions.each do |question| %>
-    <li>
-    <h4><%= link_to question.title, post_path(question.id)  %></h4>
-    </li>
+    <%= render "posts/question", question: question %>
   <% end %>
-  </ul>
 </div>
-

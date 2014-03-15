@@ -16,20 +16,26 @@ class PostsController < ApplicationController
   end
 
   def create
-    #Pending helper method to detemine Post.type
+
+    # Pending helper method to detemine Post.type
+    # and assign proper keys
     if params[:post][:question_id]
       @post = Answer.new(params[:post])
+      if @post.save
+        question = Question.find(params[:post][:question_id])
+        question.answers << @post
+        user = User.find(session[:user_id])
+        user.posts << @post
+      end
     else
       @post = Question.new(params[:post])
+      if @post.save
+        user = User.find(session[:user_id])
+        user.posts << @post
+      end
     end
 
-    if logged_in? && @post.save
-      user = User.find(session[:user_id])
-      user.posts << @post
       redirect_to root_path
-    else
-      redirect_to root_path
-    end
   end
 
   def edit

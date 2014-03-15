@@ -6,7 +6,7 @@
   <% if @user.posts %>
     Here are your posts!
     <% @user.posts.each do |user_post|  %>
-      <%= render 'shared/post' , :post => user_post %>
+      <div class = 'post'><%= render 'shared/post' , :post => user_post %></div>
     <% end %>
   <% end  %>
 

@@ -42,6 +42,14 @@ describe "Favorites", :js => true do
   #     fill_in 'Body', :with => "This is a question!"
   #     click_on 'Create Post'
   #     expect( page ).to have_content "Test Post!"
+    end
+  end
+
+  # describe "sign out" do
+  #   it "should sign a user out" do
+  #     visit users_path
+  #     click_on 'Logout'
+  #     expect( page ).to have_content "yay"
   #   end
   # end
 

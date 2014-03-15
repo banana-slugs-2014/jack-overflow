@@ -61,8 +61,8 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
   context '#update' do
     context 'when updating a question' do
 
-    context 'with valid attributes' do
-      before(:each){ put :update, id: my_question.id, post: {body: attribs[:body]} }
+      context 'with valid attributes' do
+        before(:each){ put :update, id: my_question.id, post: {body: attribs[:body]} }
         it { returns_valid_redirect }
         it "should update a post" do
           expect{
@@ -70,15 +70,15 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
             }.to change{my_question.body}.to(attribs[:body])
         end
       end
-    end
 
-    context 'with invalid attributes' do
-      before(:each){ put :update, id: my_question.id, post: {body: ""} }
-      it { returns_valid_redirect }
-      it "should not update a post" do
-        expect{
-          my_question.reload.body
-          }.to_not change{my_question.body}
+      context 'with invalid attributes' do
+        before(:each){ put :update, id: my_question.id, post: {body: ""} }
+        it { returns_valid_redirect }
+        it "should not update a post" do
+          expect{
+            my_question.reload.body
+            }.to_not change{my_question.body}
+        end
       end
     end
   end
@@ -86,14 +86,14 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
   context 'when updating a answer' do
     context 'with valid attributes' do
       before(:each){ put :update, id: my_answer.id, post: {body: attribs[:body]} }
-        it { returns_valid_redirect }
-        it "should update a post" do
-          expect{
-            my_answer.reload.body
-            }.to change{my_answer.body}.to(attribs[:body])
-        end
+      it { returns_valid_redirect }
+      it "should update a post" do
+        expect{
+          my_answer.reload.body
+          }.to change{my_answer.body}.to(attribs[:body])
       end
     end
+
 
     context 'with invalid attributes' do
       before(:each){ put :update, id: my_answer.id, post: {body: ""} }
@@ -153,6 +153,9 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
           }.to_not change{Post.count}
         end
       end
+
+
+
     end
   end
 end

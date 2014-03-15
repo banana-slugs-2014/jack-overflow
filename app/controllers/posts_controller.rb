@@ -8,7 +8,12 @@ class PostsController < ApplicationController
     #by design to prevent the need to catch errors
     @question = Post.find_by_id(params[:id])
     redirect_to root_path and return unless @question
-    @answers = @question.answers
+    if @question.type == "Question"
+      @answers = @question.answers
+    else
+      @answers = []
+    end
+
   end
 
   def new
@@ -43,9 +48,7 @@ class PostsController < ApplicationController
   end
 
   def update #helper method to determine Q/A?
-
     @post = Post.find(params[:id])
-    @post.question.favorite_id = @post.id if params.length == 1  #Bifurcate update route to allow for updating
     if @post.update_attributes(params[:post])
       if @post.question_id.nil?
         redirect_to(post_path(@post.id))
@@ -55,5 +58,11 @@ class PostsController < ApplicationController
     else
       redirect_to(edit_post_path(params[:id]))
     end
+  end
+
+  def favorite
+    @post = Post.find(params[:answer])
+    @post.question.update_attributes(favorite_id: @post.id)
+    redirect_to post_path(@post.question)
   end
 end

@@ -16,6 +16,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    #Pending helper method to detemine Post.type
     if params[:post][:question_id]
       @post = Answer.new(params[:post])
     else

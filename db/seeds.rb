@@ -17,7 +17,7 @@ end
 end
 
 10.times do
-  Answer.create({title: Faker::Lorem.word, body: Faker::Lorem.sentence(3), question_id: (1...5).to_a.sample, user_id: (1...2).to_a.sample}, without_protection: true)
+  Answer.create({ body: Faker::Lorem.sentence(3), question_id: (1...5).to_a.sample, user_id: (1...2).to_a.sample}, without_protection: true)
 end
 
 10.times do

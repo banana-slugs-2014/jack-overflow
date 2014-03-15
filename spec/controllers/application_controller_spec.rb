@@ -5,6 +5,7 @@ describe ApplicationController do
 
   context "with valid params" do
     before(:each){session[:user_id] = myuser.id}
+
     context "#logged_in?" do
       it {expect(subject.logged_in?).to eq true}
     end

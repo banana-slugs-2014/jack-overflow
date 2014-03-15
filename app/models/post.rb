@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :title, :body, :question_id
+  attr_accessible :title, :body, :question_id, :type
   # belongs_to :question, class_name: 'Post'
 
   # has_many :answers, class_name: 'Post',

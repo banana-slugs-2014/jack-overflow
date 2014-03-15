@@ -8,8 +8,25 @@ FactoryGirl.define do
 
   factory :post do
     title { Faker::Lorem.word }
-    body { Faker::Lorem.word }
+    body { Faker::Lorem.sentence }
+    type nil
     question_id nil
+    user
+  end
+
+  factory :question do
+    title { Faker::Lorem.word }
+    body { Faker::Lorem.sentence }
+    type "Question"
+    question_id nil
+    user
+  end
+
+  factory :answer do
+    title ""
+    body { Faker::Lorem.sentence }
+    type "Answer"
+    question
     user
   end
 

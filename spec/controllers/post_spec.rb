@@ -125,9 +125,17 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
       end
 
       context 'with invalid params' do
-        before(:each){ post :create, post: {title: "red", body: ""} }
-        it { returns_valid_redirect }
-        it "should increase the Post count" do
+        it "should be redirect" do
+          post :create, post: {title: "red", body: ""}
+          expect(response).to be_redirect
+        end
+
+        it "should be of the class 'Question'" do
+          post :create, post: {title: "red", body: ""}
+          expect(assigns(:post)).to be_a_new(Question)
+        end
+
+        it "should not increase the Post count" do
           expect{
             post :create, post: {title: "red", body: ""}
           }.to_not change{Post.count}
@@ -139,7 +147,11 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
     before(:each){ session[:user_id] = user.id }
 
       context "with valid params" do
-        before(:each){ post :create, post: answer_attribs }
+        before(:each) do
+          my_question
+          post :create, post: answer_attribs
+        end
+
         it { returns_valid_redirect }
         it "should be of the class 'Answer'" do
           expect(assigns(:post)).to be_a(Answer)
@@ -153,18 +165,23 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
       end
 
       context 'with invalid params' do
-        before(:each){ post :create, post: {title: "red", body: ""} }
-        it { returns_valid_redirect }
-        it "should increase the Post count" do
+        it "should be redirect" do
+          post :create, post: {title: "red", body: "", question_id: my_question.id}
+          expect(response).to be_redirect
+        end
+
+        it "should be of the class 'Answer'" do
+          post :create, post: {title: "red", body: "", question_id: my_question.id}
+          expect(assigns(:post)).to be_a(Answer)
+        end
+
+        it "should not increase the Post count" do
+          my_question
           expect{
-            post :create, post: {title: "red", body: ""}
+            post :create, post: {title: "red", body: "", question_id: my_question.id}
           }.to_not change{Post.count}
         end
       end
-
-
-
-
 
     end
   end

@@ -15,14 +15,18 @@ App.run = function(){
     ajax: new App.Ajax()
   };
 
+  var target = 'a';
+
   App.controller = new App.Controller(controllerConfig);
-  new App.Binder('a', App.controller).bind();
+  new App.Binder(target, App.controller).bind();
+
 };
 
 App.Ajax = function(){};
 
 App.Ajax.prototype = {
   grabQuestion: function(){
+
     var maxValue = 25;
     var randomNum = function(value){
       return Math.floor(Math.random() * value) + 1;
@@ -57,7 +61,7 @@ App.Binder.prototype = {
 App.Controller = function(config){
   this.graph = config.graph;
   this.ajax = config.ajax;
-  this.question = this.ajax.grabQuestion();
+  this.question = this.fetchQuestion();
 };
 
 App.Controller.prototype = {
@@ -107,7 +111,19 @@ App.Graph.prototype = {
           y: function(d){ return graph.scaler.svgHeight - graph.scaler.yScale(d);},
           height: function(d){ return graph.scaler.yScale(d); },
           fill: function(d){ return "rgb(0, 0, " + Math.floor(d*10) + ")"; }
-       });
+        })
+        .on('mouseover',function(d){
+           d3.select(this)
+             .transition()
+             .duration(250)
+             .attr("fill","rgb(" + Math.floor(4000/d) + ",0,0)");
+        })
+        .on('mouseout',function(d){
+           d3.select(this)
+             .transition()
+             .duration(250)
+             .attr("fill","rgb(0, 0, " + Math.floor(d*10) + ")");
+        });
   },
   populateLabel: function(dataset){
     var graph = this;

@@ -23,13 +23,13 @@ class Post < ActiveRecord::Base
     User.find(user_id).posts << self
   end
 
-  def update_router(attribs)
+  def update_router(attribs) #self by design
     return :back unless update_attributes(attribs)
     return id if self.is_a? Question
     return question_id if self.is_a? Answer
   end
 
-  def create_router
+  def create_router #self by design
     return :back unless self.save
     return id if self.is_a? Question
     return question_id if self.is_a? Answer

@@ -1,7 +1,3 @@
-<div class="vote_form" data-remote="true">
-  <%= form_for :vote, url: post_votes_path(post.id) do |f| %>
-    <%= f.button 'Upvote', name: 'value', value: 1 %>
-    <%= f.button 'Downvote', name: 'value', value: -1 %>
-
-  <% end %>
+<div class="vote_form">
+  <%= link_to "upvote", post_votes_path(post, value: 1), class: "vote", remote: true, method: :post %>
 </div>

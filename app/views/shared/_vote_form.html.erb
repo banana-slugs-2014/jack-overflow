@@ -1,4 +1,4 @@
-<div class="vote_form">
+<div class="vote_form" data-remote="true">
   <%= form_for :vote, url: post_votes_path(post.id) do |f| %>
     <%= f.button 'Upvote', name: 'value', value: 1 %>
     <%= f.button 'Downvote', name: 'value', value: -1 %>

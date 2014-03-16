@@ -3,6 +3,10 @@ class Question < Post
   validates_presence_of :title
   has_one :favorite, class_name: "Answer", foreign_key: :answer_id
 
+  def assign_favorite(answer_id)
+    update_attributes(favorite_id: answer_id)
+  end
+
   class << self
     def sort_questions(how)
       case how

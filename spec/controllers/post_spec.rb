@@ -111,9 +111,13 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
     before(:each){ session[:user_id] = user.id }
 
       context "with valid params" do
-        before(:each){ post :create, post: attribs }
-        it { returns_valid_redirect }
+        it "should be redirect" do
+          post :create, post: attribs
+          expect(response).to be_redirect
+        end
+
         it "should be of the class 'Question'" do
+          post :create, post: attribs
           expect(assigns(:post)).to be_a(Question)
         end
 
@@ -147,13 +151,15 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
     before(:each){ session[:user_id] = user.id }
 
       context "with valid params" do
-        before(:each) do
-          my_question
+        before(:each){my_question}
+
+        it "should be redirect" do
           post :create, post: answer_attribs
+          expect(response).to be_redirect
         end
 
-        it { returns_valid_redirect }
         it "should be of the class 'Answer'" do
+          post :create, post: answer_attribs
           expect(assigns(:post)).to be_a(Answer)
         end
 

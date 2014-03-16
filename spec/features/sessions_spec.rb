@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Sessions", :js => true do
+describe "Sessions" do
 
   let!(:user ) { FactoryGirl.create :user }
   describe "sign in" do
@@ -13,7 +13,7 @@ describe "Sessions", :js => true do
     end
   end
 
-  describe "sign out" do
+  describe "sign out", :js => true do
     it "should sign a user out" do
       visit sign_in_path
       fill_in 'Username', :with => user.username

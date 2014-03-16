@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe "Favorites", :js => true do
+describe "Favorites" do
 
   let!(:user ) { FactoryGirl.create :user }
   let!(:myuser) { FactoryGirl.create :user }
   # let()
   describe "Ask a question" do
-    it "should let a user log in and Ask Jack" do
+    xit "should let a user log in and Ask Jack" do
       visit new_session_path
       click_on "Sign In"
       fill_in 'Username', :with => user.username

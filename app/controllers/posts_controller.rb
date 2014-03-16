@@ -1,13 +1,14 @@
 class PostsController < ApplicationController
+  before_filter :protect_route, except: [:index, :show]
 
   def index
-    @questions = Post.where(question_id: nil)
+    @questions = Question.all
   end
 
   def show
-    #by design to prevent the need to catch errors
-    @question = Post.find_by_id(params[:id])
-    redirect_to :back and return unless @question.is_a? Question
+    #find_by_id by design to prevent the need to catch errors
+    @question = Question.find_by_id(params[:id])
+    redirect_to :back and return unless @question
     @answers = @question.answers
   end
 
@@ -24,7 +25,6 @@ class PostsController < ApplicationController
       @post = Question.create(params[:post])
       @post.assign_user_key(session[:user_id])
     end
-
     redirect_to post_path(@post.create_router)
   end
 
@@ -38,8 +38,8 @@ class PostsController < ApplicationController
   end
 
   def favorite
-    @post = Post.find(params[:answer])
-    @post.question.update_attributes(favorite_id: @post.id)
-    redirect_to post_path(@post.question)
+    @answer = Answer.find(params[:answer])
+    @answer.question.assign_favorite(@answer.id)
+    redirect_to post_path(@answer.question)
   end
 end

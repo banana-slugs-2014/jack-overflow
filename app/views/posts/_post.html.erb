@@ -1,8 +1,9 @@
 <div class="post">
   <h1><%= post.title ? post.title : "" %></h1>
   <p><%= post.body %></p>
+  <%= render "votes/vote", post: post %>
 
-  <%= render "votes/vote_count", post: post %>
+
   <% Answer.where(question_id: post.id).each do |answer| %>
     <h3> ANSWER </h3>
     <%= answer.title %>
@@ -17,6 +18,7 @@
       <% end %>
 
     <% end %>
+    <%= render "votes/vote", post: answer %>
     <% answer.comments.each do |comment| %>
       <h5> COMMENTS </h5>
       <%= render "comments/comment", comment: comment %>

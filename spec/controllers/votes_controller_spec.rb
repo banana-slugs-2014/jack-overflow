@@ -39,7 +39,7 @@ describe VotesController do
     end
     context 'guest user' do
       before(:each){session.clear}
-      it 'is ok' do
+      xit 'is ok' do
         xhr :post, :create,
         { value: 1, post_id: my_post.id }
         expect(response).to be_success

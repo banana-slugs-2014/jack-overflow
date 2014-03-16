@@ -1,6 +1,7 @@
 class Question < Post
   has_many :answers
   validates_presence_of :title
+  has_one :favorite, class_name: "Answer", foreign_key: :answer_id
 
   class << self
     def sort_questions(how)

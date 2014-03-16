@@ -13,6 +13,12 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :development do
+  gem "better_errors"
+end
+
+
+
 group :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
@@ -25,3 +31,5 @@ end
 gem 'jquery-rails'
 gem 'debugger'
 gem 'pry'
+gem "binding_of_caller"
+

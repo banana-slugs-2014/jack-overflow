@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Favorites", :js => true do
+describe "Favorites" do
 
   let!(:user ) { FactoryGirl.create :user }
   let!(:myuser) { FactoryGirl.create :user }

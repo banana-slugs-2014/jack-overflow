@@ -129,24 +129,6 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
           }.to change{Post.count}.by(1)
         end
       end
-
-      context 'with invalid params' do
-        it "should be redirect" do
-          post :create, post: {title: "red", body: ""}
-          expect(response).to be_redirect
-        end
-
-        it "should be of the class 'Question'" do
-          post :create, post: {title: "red", body: ""}
-          expect(assigns(:post)).to be_a_new(Question)
-        end
-
-        it "should not increase the Post count" do
-          expect{
-            post :create, post: {title: "red", body: ""}
-          }.to_not change{Post.count}
-        end
-      end
     end
 
     context 'creating an answer' do
@@ -157,7 +139,7 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
 
         it "should be redirect" do
           post :create, post: answer_attribs
-          expect(response).to be_redirect
+          expect(response).to be_ok
         end
 
         it "should be of the class 'Answer'" do
@@ -169,25 +151,6 @@ let(:answer_attribs){FactoryGirl.attributes_for :post, question_id: 1}
           expect{
             post :create, post: answer_attribs
           }.to change{Post.count}.by(1)
-        end
-      end
-
-      context 'with invalid params' do
-        it "should be redirect" do
-          post :create, post: {title: "red", body: "", question_id: my_question.id}
-          expect(response).to be_redirect
-        end
-
-        it "should be of the class 'Answer'" do
-          post :create, post: {title: "red", body: "", question_id: my_question.id}
-          expect(assigns(:post)).to be_a(Answer)
-        end
-
-        it "should not increase the Post count" do
-          my_question
-          expect{
-            post :create, post: {title: "red", body: "", question_id: my_question.id}
-          }.to_not change{Post.count}
         end
       end
     end

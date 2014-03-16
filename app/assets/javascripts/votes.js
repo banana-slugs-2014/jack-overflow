@@ -1,8 +1,7 @@
 $(function(){
-  $('.vote').on("ajax:success", function(e, response){
-    $(this).html(response);
-    console.log(response);
-    console.log( 'I MADE IT TO THE VOTE AJAX REQUEST');
-
+  $(document).on("ajax:success", '.vote',function(e, response){
+    $(this).html(response)
   });
+
+
 });

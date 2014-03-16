@@ -5,9 +5,9 @@
     <% @answers.each do |answer| %>
       <%= render "posts/post", post: answer %>
     <% end %>
+  </div>
 
     <%= render "/shared/answers_form", question_id: @question.id %>
-  </div>
 
 </div>
 

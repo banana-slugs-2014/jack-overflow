@@ -1,24 +1,21 @@
 class VotesController < ApplicationController
-  before_filter :protect_route, only: [:create, :update]
 
   def create
-    vote = current_user.votes.new(value: params[:value])
-    vote.post = Post.find(params[:post_id])
-    if vote.save
-      # render partial: 'vote_count' , locals: { post: vote.post }
-    else
-      # render partial: :errors, locals: { error: vote.errors.full_messages }
-    end
-    redirect_to post_path(vote.post)
+      vote = User.find(session[:user_id]).votes.build(value: params[:value].to_i)
+      post = Post.find(params[:post_id])
+      post.votes << vote
+      vote.save
+      render partial: 'vote', locals: { post: vote.post }
   end
 
-  def update
-    vote = current_user.votes.where(id: params[:vote_id]).first
-    if vote.update_attributes params[:vote]
-      render partial: 'vote_count', locals: { post: vote.post }
-    else
-      # render partial: :errors, locals: { error: vote.errors.full_messages }
-    end
-  end
+  # def update
+  #   vote = User.find(session[:user_id]).votes.where(id: params[:id],  post_id: params[:post_id] ).first
+  #   if vote.value = params[:value]
+  #     vote.save
+  #     render partial: 'vote', locals: { post: vote.post }
+  #   elsif new_vote = User.find(session[:user_id]).votes.build(value: params[:value].to_i, post_id: params[:post_id])
+  #     render partial: 'vote', locals: { post: new_vote.post }
+  #   end
+  # end
 
 end

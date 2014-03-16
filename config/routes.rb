@@ -5,6 +5,7 @@ JackOverflow::Application.routes.draw do
 
   resources :posts, except: :destroy do
     resources :comments, except: [:index, :show]
+    resources :votes, only: [:create, :update]
   end
 
   resources :sessions, only: [:new, :create, :destroy]
@@ -16,5 +17,5 @@ JackOverflow::Application.routes.draw do
   get '/profile', to: 'users#show', as: 'profile'
   get '/signup', to: 'users#new', as: 'sign_up'
 
-  resources :votes, only: [:create, :update]
+  # resources :votes, only: [:create, :update]
 end

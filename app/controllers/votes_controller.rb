@@ -1,5 +1,4 @@
 class VotesController < ApplicationController
-  before_filter :protect_route, only: [:create, :update]
 
   def create
       vote = User.find(session[:user_id]).votes.build(value: params[:value].to_i)

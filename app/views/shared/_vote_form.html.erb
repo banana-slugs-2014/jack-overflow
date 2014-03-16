@@ -1,3 +1,4 @@
 <div class="vote_form">
-  <%= link_to "upvote", post_votes_path(post, value: 1), class: "vote", remote: true, method: :post %>
+    <%= link_to "upvote", post_votes_path(post, value: 1), remote: true, method: :post %>
+    <%= link_to "downvote", post_votes_path(post, value: -1), remote: true, method: :post %>
 </div>

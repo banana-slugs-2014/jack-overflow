@@ -12,7 +12,7 @@ describe VotesController do
 
   describe "#create" do
     context 'logged in user' do
-      xit 'is ok' do
+      it 'is ok' do
         xhr :post, :create,
         { value: 1, post_id: my_post.id },
         { user_id: my_user.id }
@@ -20,7 +20,7 @@ describe VotesController do
         expect(response).to be_success
       end
 
-      xit 'creates a vote in the database' do
+      it 'creates a vote in the database' do
         session[:user_id] = my_user.id
         expect {
           xhr :post, :create,
@@ -29,34 +29,12 @@ describe VotesController do
           }.to change{Vote.count}.by(1)
       end
 
-      xit 'renders the updated vote count' do
+      it 'renders the updated vote count' do
         xhr :post, :create,
         { value: 1, post_id: my_post.id },
         { user_id: my_user.id }
 
-        expect(response).to render_template(partial: "votes/_vote_count")
-      end
-    end
-    context 'guest user' do
-      before(:each){session.clear}
-      xit 'is ok' do
-        xhr :post, :create,
-        { value: 1, post_id: my_post.id }
-        expect(response).to be_success
-      end
-
-      xit 'renders error message' do
-        xhr :post, :create,
-        { value: 1, post_id: my_post.id }
-
-        expect(response).to render_template(partial: 'shared/_sign_in_error')
-      end
-
-      xit 'does not add a vote to the database' do
-        expect {
-          xhr :post, :create,
-          { value: 1, post_id: my_post.id }
-          }.to_not change{Vote.count}
+        expect(response).to render_template(partial: "votes/_vote")
       end
     end
   end

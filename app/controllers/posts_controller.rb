@@ -7,13 +7,8 @@ class PostsController < ApplicationController
   def show
     #by design to prevent the need to catch errors
     @question = Post.find_by_id(params[:id])
-    redirect_to root_path and return unless @question
-    if @question.type == "Question"
-      @answers = @question.answers
-    else
-      @answers = []
-    end
-
+    redirect_to :back and return unless @question.is_a? Question
+    @answers = @question.answers
   end
 
   def new

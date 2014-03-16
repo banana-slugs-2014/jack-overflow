@@ -35,6 +35,14 @@ class Post < ActiveRecord::Base
     return question_id if self.is_a? Answer
   end
 
+  def build_comment(comment)
+    comments.build(comment)
+  end
+
+  def find_comment(id)
+    comments.find id
+  end
+
   private
 
   def grab_votes

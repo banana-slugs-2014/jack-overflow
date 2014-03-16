@@ -25,7 +25,6 @@ class Question < Post
     end
 
     def sort_by_trending
-      # debugger
       Question.all.sort_by(&:trending)
     end
   end

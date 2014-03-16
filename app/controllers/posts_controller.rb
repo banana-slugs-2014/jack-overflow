@@ -17,15 +17,17 @@ class PostsController < ApplicationController
   end
 
   def create
+    # html5 validation for blank form
     if params[:post][:question_id]
       @post = Answer.create(params[:post])
       @post.assign_question_key(params[:post][:question_id])
       @post.assign_user_key(session[:user_id])
+      render partial: "posts/post", locals: { post: @post }
     else
       @post = Question.create(params[:post])
       @post.assign_user_key(session[:user_id])
+      redirect_to post_path(@post.id)
     end
-    redirect_to post_path(@post.create_router)
   end
 
   def edit

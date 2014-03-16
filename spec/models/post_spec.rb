@@ -38,22 +38,6 @@ describe Question do
       end
     end
   end
-
-  context '#create_router' do
-    context 'with valid params' do
-      it "should return ':back'" do
-        q = Question.create(qattribs)
-        expect(q.create_router).to eq q.id
-      end
-    end
-
-    context 'with invalid params' do
-      it "should return 'self.id for question and self.question_id for answer'" do
-        q = Question.create(invalid_qattribs)
-        expect(q.create_router).to eq :back
-      end
-    end
-  end
 end
 
 describe Answer do
@@ -75,24 +59,6 @@ describe Answer do
     context 'with invalid params' do
       it "should return 'self.id for question and self.question_id for answer'" do
         expect(my_answer.update_router(ansattribs)).to eq my_answer.question_id
-      end
-    end
-  end
-
-  context '#create_router' do
-    context 'with invalid params' do
-      it "should return ':back'" do
-        ans = Answer.create(invalid_ansattribs)
-        ans.assign_question_key(invalid_ansattribs[:question_id])
-        expect(ans.create_router).to eq :back
-      end
-    end
-
-    context 'with valid params' do
-      it "should return 'self.id for question and self.question_id for answer'" do
-        ans = Answer.create(ansattribs)
-        ans.assign_question_key(ansattribs[:question_id])
-        expect(ans.create_router).to eq my_answer.question_id
       end
     end
   end

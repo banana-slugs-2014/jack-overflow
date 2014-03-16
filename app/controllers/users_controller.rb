@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_filter :grab_user, only: [:edit, :show]
+  before_filter :get_user, only: [:update, :destroy]
+
   def index
     @users = User.all
   end
@@ -8,7 +11,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = !params[:id].nil? ? User.find(params[:user]) : User.find(session[:user_id])
   end
 
   def create
@@ -18,18 +20,26 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:user])
   end
 
   def update
-    @user = User.find params[:id]
     @user.username = params[:user][:username]
     @user.save ? (redirect_to user_path(@user)) : (render :edit)
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    @user.destroy
     redirect_to root_path
+  end
+
+  private
+
+  def grab_user
+    @user = !params[:id].nil? ? User.find(params[:user]) : User.find(session[:user_id])
+  end
+
+  def get_user
+    @user = User.find(params[:id])
   end
 
 end

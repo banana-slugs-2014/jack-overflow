@@ -14,7 +14,6 @@ describe "Voting", :js => true do
       fill_in 'Title', :with => "Test Post!"
       fill_in 'Body', :with => "This is a question!"
       click_on 'Create Post'
-      click_on 'Test Post!'
       click_on "Upvote"
       expect( page ).to have_content(1)
     end

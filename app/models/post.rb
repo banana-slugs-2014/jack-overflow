@@ -24,7 +24,7 @@ class Post < ActiveRecord::Base
   end
 
   def update_router(attribs)
-    return :back unless self.update_attributes(attribs)
+    return :back unless update_attributes(attribs)
     return id if self.is_a? Question
     return question_id if self.is_a? Answer
   end

@@ -19,6 +19,22 @@ class Post < ActiveRecord::Base
     descendants.map{ |c| c.to_s }.sort
   end
 
+  def assign_user_key(user_id)
+    User.find(user_id).posts << self
+  end
+
+  def update_router(attribs)
+    return :back unless self.update_attributes(attribs)
+    return id if self.is_a? Question
+    return question_id if self.is_a? Answer
+  end
+
+  def create_router
+    return :back unless self.save
+    return id if self.is_a? Question
+    return question_id if self.is_a? Answer
+  end
+
   private
 
   def grab_votes

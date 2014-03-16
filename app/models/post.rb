@@ -30,7 +30,7 @@ class Post < ActiveRecord::Base
   end
 
   def create_router #self by design
-    return :back unless self.save
+    return :back unless save
     return id if self.is_a? Question
     return question_id if self.is_a? Answer
   end

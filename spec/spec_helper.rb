@@ -21,6 +21,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.before(:type => :controller) do
+    request.env["HTTP_REFERER"] = "/"
+  end
+
   config.infer_base_class_for_anonymous_controllers = false
 
   config.order = "random"
@@ -33,3 +37,4 @@ end
 def returns_valid_redirect
   expect(response).to be_redirect
 end
+

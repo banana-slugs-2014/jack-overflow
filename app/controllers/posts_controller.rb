@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   def show
     #by design to prevent the need to catch errors
     @question = Post.find_by_id(params[:id])
-    redirect_to root_path and return unless @question
+    redirect_to :back and return unless @question.is_a? Question
     @answers = @question.answers
   end
 
@@ -53,5 +53,11 @@ class PostsController < ApplicationController
     else
       redirect_to(edit_post_path(params[:id]))
     end
+  end
+
+  def favorite
+    @post = Post.find(params[:answer])
+    @post.question.update_attributes(favorite_id: @post.id)
+    redirect_to post_path(@post.question)
   end
 end

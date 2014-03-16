@@ -2,6 +2,7 @@
   <% if vote = post.votes.find_by_user_id(session[:user_id]) %>
     <%=link_to "upvote", post_vote_path(post, vote, value: 1), remote: true, method: :put %>
     <%=link_to "downvote", post_vote_path(post, vote, value: -1), remote: true, method: :put %>
+
   <% else %>
     <%= link_to "upvote", post_votes_path(post, value: 1), remote: true, method: :post %>
     <%= link_to "downvote", post_votes_path(post, value: -1), remote: true, method: :post %>

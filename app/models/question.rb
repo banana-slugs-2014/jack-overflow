@@ -33,11 +33,11 @@ class Question < Post
     private
 
     def sort_by_time
-      Question.all.sort_by(&:created_at)
+      Question.order('created_at DESC')
     end
 
     def sort_by_vote_count
-      Question.all.sort_by(&:vote_count)
+      Question.all.sort_by(&:vote_count).reverse
     end
 
     def sort_by_trending

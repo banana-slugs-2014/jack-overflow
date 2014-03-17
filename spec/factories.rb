@@ -2,7 +2,7 @@ require 'spec_helper'
 
 FactoryGirl.define do
   factory :user do
-    username { Faker::Lorem.word }
+    username { Faker::Lorem.word + Faker::Lorem.word + Faker::Lorem.word }
     password "1234"
   end
 

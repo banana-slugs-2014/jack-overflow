@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Voting", :js => true do
+describe "Voting", :js => false do
   let!(:myuser) { FactoryGirl.create :user }
   let!(:mypost) { FactoryGirl.create :post }
   describe "Upvote" do

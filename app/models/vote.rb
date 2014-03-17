@@ -4,5 +4,5 @@ class Vote < ActiveRecord::Base
   attr_accessible :value
   validates_inclusion_of :value, :in => -1..1
   # ALLOWS A USER TO VOTE ONE TIME!
-  # validates :post_id, uniqueness: { scope: :user_id }
+  validates :post_id, uniqueness: { scope: :user_id }
 end

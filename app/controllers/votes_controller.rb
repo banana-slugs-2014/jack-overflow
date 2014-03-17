@@ -9,8 +9,6 @@ class VotesController < ApplicationController
   end
 
   def update
-    p "YOU DONT BELIEVE IN MAGIC"
-
     vote = User.find(session[:user_id]).votes.where(id: params[:id],  post_id: params[:post_id] ).first
     vote.value = params[:value]
        vote.save

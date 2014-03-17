@@ -1,3 +1,4 @@
+<div class= "answer<%= answer.id %>">
 <h2>Answer: <%= answer.body %></h2>
 <% if session[:user_id] == Question.find(answer.question_id).user_id %>
 
@@ -10,5 +11,12 @@
     <h4>Marked as Favorite</h4>
 <% end %>
 <%= render "votes/vote", post: answer %>
-<%# link_to 'New Comment', new_post_comment_path(question) %>
+</div>
 
+<div class="comments">
+  <%= link_to 'New Comment', '#', remote: true, class: "new_comment" %>
+  <%= render "shared/comment_form", answer: answer %>
+  <% answer.comments.each do |comment| %>
+    <%= render "comments/comment", comment: comment %>
+  <% end %>
+</div>

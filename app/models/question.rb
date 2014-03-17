@@ -8,6 +8,17 @@ class Question < Post
   end
 
   class << self
+
+    def votes_for_each
+      votes = []
+      questions = Question.all
+      questions.each do |q|
+        votes.push(q.vote_count)
+      end
+      votes
+    end
+
+
     def sort_questions(how)
       case how
       when "by_time"
@@ -20,12 +31,13 @@ class Question < Post
     end
 
     private
+
     def sort_by_time
-      Question.all.sort_by(&:created_at)
+      Question.order('created_at DESC')
     end
 
     def sort_by_vote_count
-      Question.all.sort_by(&:vote_count)
+      Question.all.sort_by(&:vote_count).reverse
     end
 
     def sort_by_trending

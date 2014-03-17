@@ -7,6 +7,10 @@ class PostsController < ApplicationController
     else
       @questions= Question.all
     end
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: Question.votes_for_each }
+    end
   end
 
   def show

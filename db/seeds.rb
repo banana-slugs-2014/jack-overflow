@@ -8,15 +8,15 @@
 
 require 'faker'
 
-2.times do
+500.times do
   User.create({username: Faker::Name.first_name, password: "admin"}, without_protection: true)
 end
 
-5.times do
+25.times do
   Question.create({title: Faker::Lorem.word, body: Faker::Lorem.sentence(3), user_id: (1...2).to_a.sample}, without_protection: true)
 end
 
-10.times do
+25.times do
   Answer.create({ body: Faker::Lorem.sentence(3), question_id: (1...5).to_a.sample, user_id: (1...2).to_a.sample}, without_protection: true)
 end
 
@@ -24,6 +24,6 @@ end
   Comment.create({body: Faker::Lorem.sentence, user_id: (1...2).to_a.sample, post_id: (1...15).to_a.sample}, without_protection: true)
 end
 
-10.times do
-  Vote.create({value: (-1...1).to_a.sample, user_id: (1...2).to_a.sample, post_id: (1...15).to_a.sample}, without_protection: true)
-  end
+2500.times do
+  Vote.create({value: 1, user_id: (1...500).to_a.sample, post_id: (1...25).to_a.sample}, without_protection: true)
+end

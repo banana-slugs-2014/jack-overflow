@@ -1,4 +1,9 @@
 <div class="questions_list">
+  <div class="question_graph">
+    <p>View each question's answers and the number of votes each answer has.</p>
+    <%= link_to "Next Question" , {}, {class: 'next_question'} %>
+  </div>
+
   <ul>
     <li>
       <% @questions.each do |question| %>

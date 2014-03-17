@@ -1,0 +1,158 @@
+/*=============================
+  Layouts will all be id's (#)
+ =============================*/
+
+
+/*Potential Fixed Width of Screen*/
+  html { min-width: 1080px;}
+
+  html, body div , p{
+    margin: auto 0 auto;
+    padding: 0;
+    border: 0;
+  }
+
+
+/*Header Footer Body layoutp*/
+  #header, #footer, #body {
+    width: 960px;
+    margin: auto;
+
+  }
+
+  #body {
+  }
+
+/*Fixed vs Non-fixed layouts*/
+  #body {
+    width: 80%;
+    float: middle;
+    color: white;
+    position: relative;
+    padding-top: 15%;
+  }
+
+  #sidebar {
+    width: 20%;
+    float: right;
+  }
+
+  .l-fixed #body {
+    width: 600px;
+    float: left;
+  }
+
+  .l-fixed #sidebar {
+    width: 200px;
+    float: right;
+  }
+
+/*Custom Body*/
+
+body#wootstrap{
+  background-color: #000000;
+  background-repeat: repeat y
+}
+
+
+/*=============================
+  Modules will all be classes (.)
+ =============================*/
+
+
+/*==========================*/
+        /*Button*/
+/*==========================*/
+
+.input {
+margin: 1%;
+border: none;
+text-align: center;
+background-color: #34495e;
+color: #ecf0f1;
+border-radius: 2px;
+height: 50px;
+width: 80%;
+}
+
+.btn-type {
+margin: 5px 0 5px 0;
+height: 40px;
+width: 90px;
+background-color: #27ae60;
+border-radius: 3px;
+border: none;
+box-sizing: none;
+}
+
+.btn-type-survey {
+margin: 2px 0 2px 0;
+height: 60px;
+width: 110px;
+background-color: #27ae60;
+border-radius: 3px;
+border: none;
+box-sizing: none;
+}
+
+
+
+/*==========================*/
+        /*Navbar*/
+/*==========================*/
+.wootstrap-navbar{
+  height: 55px;
+  width: 100%;
+  background-color: #3d4f63; /*#2c3e50*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-bottom: 5%;
+}
+
+ul .wootstrap-home-icon{
+  text-align: left;
+  color: #e67e22;
+  width: 10%;
+}
+
+li .wootstra-home-icon{
+  text-align: left;
+}
+
+ul {
+  text-align: right;
+  padding-right: 30px;
+}
+
+li {
+  color: #34495e;
+  list-style: none;
+  display: inline;
+  margin: 0;
+  height: 55px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  font-size: 1.3em;
+}
+
+li:hover{
+  background-color: #2980b9;
+}
+
+li a {
+  color: #ecf0f1;
+  text-decoration: none;
+}
+
+.wootstrap-active {
+  background-color: #ed6454;
+
+}
+/*==========================*/
+        /* End Navbar*/
+/*==========================*/
+
+

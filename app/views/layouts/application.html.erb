@@ -7,8 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render "shared/nav", user: session[:user_id] %>
-<%= yield %>
+<div class="container">
+  <div class="header">
+    <h2>Welcome to JackOverflow</h2>
+  </div>
+  
+  <%= render "shared/nav", user: session[:user_id] %>
+  <%= yield %>
+</div>
+
+
+<footer>
+  JackOverflow
+</footer>
 
 </body>
 </html>

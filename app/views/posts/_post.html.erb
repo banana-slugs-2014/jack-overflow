@@ -5,12 +5,14 @@
 
 
   <% Answer.where(question_id: post.id).each do |answer| %>
+    <div class = 'container'>
     <h3> ANSWER </h3>
     <%= answer.title %>
     <%= answer.body %>
     <% if post.favorite_id == answer.id %>
       Marked as Favorite
     <% end %>
+    </div>
 
     <% if session[:user_id] == answer.user_id %>
       <%= form_tag(favorite_post_path, :method => :put) do %>

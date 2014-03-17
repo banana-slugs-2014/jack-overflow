@@ -1,4 +1,6 @@
 <div class="list_question">
-  <%= link_to question.title, post_path(question.id)  %>
-  <%= render "votes/vote_count", post: question %>
+  <div class="question_listing">
+    <%= link_to question.title, post_path(question.id)  %>
+    <%= render "votes/vote_count", post: question %>
+  </div>
 </div>

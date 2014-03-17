@@ -15,6 +15,19 @@
 
 <div id="header">
   <%= render 'shared/search' %>
+    <%= form_tag( "/posts", :method => "get", class: "search") do %>
+      <%= hidden_field_tag :sort, "by_time" %>
+      <%= submit_tag "Sort By Time" %>
+    <% end %>
+    <%= form_tag( "/posts", :method => "get", class: "search") do %>
+      <%= hidden_field_tag :sort, "by_vote_count" %>
+      <%= submit_tag "Sort By Votes" %>
+    <% end %>
+    <%= form_tag( "/posts", :method => "get", class: "search") do %>
+      <%= hidden_field_tag :sort, "by_trending" %>
+      <%= submit_tag "Sort By Trending" %>
+    <% end %>
+  </ul>
 </div>
 <div id="body">
   <%= yield %>

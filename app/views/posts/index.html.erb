@@ -1,22 +1,11 @@
 <div class="questions_list">
-
-  <%= form_tag( "/posts", :method => "get") do %>
-    <%= hidden_field_tag :sort, "by_time" %>
-    <%= submit_tag "Sort By Time" %>
-  <% end %>
-
-  <%= form_tag( "/posts", :method => "get") do %>
-    <%= hidden_field_tag :sort, "by_vote_count" %>
-    <%= submit_tag "Sort By Votes" %>
-  <% end %>
-
-  <%= form_tag( "/posts", :method => "get") do %>
-    <%= hidden_field_tag :sort, "by_trending" %>
-    <%= submit_tag "Sort By Trending" %>
-  <% end %>
-
-
-  <% @questions.each do |question| %>
-    <%= render "posts/question", question: question %>
-  <% end %>
+  <ul>
+    <li>
+      <% @questions.each do |question| %>
+        <div class="post">
+          <%= render "posts/question", question: question %>
+        </div>
+      <% end %>
+    </li>
+  </ul>
 </div>

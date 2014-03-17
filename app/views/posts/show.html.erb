@@ -5,7 +5,6 @@
     <p><%= @question.body %></p>
     <%= render "votes/vote", post: @question %>
   </div>
-  <hr>
 
   <div class= "answers">
     <% Answer.where(question_id: @question.id).each do |answer| %>
@@ -23,6 +22,5 @@
     <% end %>
   </div>
 
-  <hr>
   <%= render "/shared/answers_form", question_id: @question.id %>
 </div>

@@ -13,7 +13,6 @@ App.run = function(){
 
   var controllerConfig = {
     graph: new App.Graph(graphConfig),
-    // ajax: new App.Ajax()
   };
 
   var target = '.next_question';
@@ -22,35 +21,6 @@ App.run = function(){
   new App.Binder(target, App.controller).bind();
 
 };
-
-// App.Ajax = function(){};
-
-// App.Ajax.prototype = {
-//   grabQuestion: function(){
-
-//     $.ajax({
-//       type: 'get',
-//       url: 'posts/index',
-//       dataType: 'json'
-//     }).done(function(resp){
-//       App.controller.setQuestion(resp);
-//     }).fail(function(){
-//       console.log('fail');
-//     });
-//     // return dataset;
-//   }
-//   //   var maxValue = 25;
-//   //   var randomNum = function(value){
-//   //     return Math.floor(Math.random() * value) + 1;
-//   //   };
-//   //   var dataset = [];
-//   //   for (var i = 0; i < 25; i++){
-//   //     var newNumber = randomNum(maxValue);
-//   //     dataset.push(newNumber);
-//   //   }
-//   //   return dataset;
-//   // }
-// };
 
 App.Binder = function(target, controller){
   this.newQuestionSelector = target;
@@ -72,13 +42,11 @@ App.Binder.prototype = {
 
 App.Controller = function(config){
   this.graph = config.graph;
-  // this.ajax = config.ajax;
   this.question = this.fetchQuestions();
 };
 
 App.Controller.prototype = {
   fetchQuestions: function(){
-    // var ajax = this.ajax;
     var controller = this;
     $.ajax({
       type: 'get',
@@ -132,15 +100,15 @@ App.Graph.prototype = {
         .attr({
           x: function(d, i){ return scaler.xScale(i);},
           width: scaler.xScale.rangeBand(),
-          y: function(d){ return scaler.yScale(Math.min(0,d));},
-          height: function(d, i){ return Math.abs(scaler.yScale(d)-scaler.yScale(0));},
+          y: function(d){ return scaler.svgHeight - scaler.yScale(d);},
+          height: function(d, i){ return scaler.yScale(d);},
           fill: function(d){ return "rgb(0, 0, " + Math.floor(d*10) + ")"; }
         })
         .on('mouseover',function(d){
            d3.select(this)
              .transition()
              .duration(250)
-             .attr("fill","rgb(" + Math.floor(4000/d) + ",0,0)");
+             .attr("fill","rgb(" + Math.floor(d) + ",0,0)");
         })
         .on('mouseout',function(d){
            d3.select(this)
@@ -222,9 +190,8 @@ App.Graph.Scaler.prototype = {
            .rangeRoundBands([0,this.svgWidth],this.barPadding);
   },
   yScaler: function(dataset){
-    var y0 = Math.max(-d3.min(dataset), d3.max(dataset));
     return d3.scale.linear()
-           .domain([-y0, y0])
+           .domain(d3.extent(dataset))
            .rangeRound([0,this.svgHeight])
            .nice();
   },

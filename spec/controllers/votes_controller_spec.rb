@@ -3,7 +3,7 @@ require 'spec_helper'
 describe VotesController do
   render_views
 
-  let(:my_vote){ FactoryGirl.create(:vote) }
+  let!(:my_vote){ FactoryGirl.create(:vote, post: my_post) }
   let(:my_vote_attribs){ FactoryGirl.attributes_for(:vote) }
   let!(:my_post) { FactoryGirl.create(:post) }
   let(:alt_attribs) { {value: -1} }
@@ -41,25 +41,26 @@ describe VotesController do
 
   describe "#update" do
     context 'logged in user' do
-      xit 'is ok' do
+      before(:each){session[:user_id] = my_user.id}
+      it 'is ok' do
         xhr :put, :update,
-        { vote_id: my_vote.id, vote: alt_attribs, post_id: my_post.id },
+        { id: my_vote.id, vote: alt_attribs, post_id: my_post.id },
         { user_id: my_vote.user.id }
 
         expect(response).to be_success
       end
 
-      xit 'does not change vote count in database' do
+      it 'does not change vote count in database' do
         expect {
           xhr :put, :update,
-          { vote_id: my_vote.id, vote: alt_attribs, post_id: my_post.id },
+          { id: my_vote.id, vote: alt_attribs, post_id: my_post.id },
           { user_id: my_vote.user.id }
           }.to_not change{Vote.count}
       end
 
-      xit 'renders the updated vote count' do
+      it 'renders the updated vote count' do
         xhr :put, :update,
-        { vote_id: my_vote.id, vote: alt_attribs, post_id: my_post.id },
+        { id: my_vote.id, vote: alt_attribs, post_id: my_post.id },
         { user_id: my_vote.user.id }
 
         expect(response).to render_template(partial: "votes/_vote_count")

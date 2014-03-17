@@ -13,16 +13,14 @@
         <%= render "posts/answer", question: @question, answer: answer %>
       </div>
       <div class="comments">
-        <%= link_to 'New Comment', '#', remote: true, class: "new_comment" %>
-        <%= render "shared/comment_form", answer: answer %>
         <% answer.comments.each do |comment| %>
           <%= render "comments/comment", comment: comment %>
         <% end %>
       </div>
-
     <% end %>
   </div>
 
   <hr>
   <%= render "/shared/answers_form", question_id: @question.id %>
 </div>
+

@@ -8,6 +8,9 @@
   </div>
 
   <div class= "answers">
+    <% if @favorite_answer %>
+      <%= render "posts/answer", question: @question, answer: @favorite_answer %>
+    <% end %>
     <% @answers.each do |answer| %>
           <%= render "posts/answer", question: @question, answer: answer %>
     <% end %>

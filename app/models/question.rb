@@ -10,11 +10,11 @@ class Question < Post
   class << self
     def sort_questions(how)
       case how
-      when :by_time
+      when "by_time"
         sort_by_time
-      when :by_vote_count
+      when "by_vote_count"
         sort_by_vote_count
-      when :by_trending
+      when "by_trending"
         sort_by_trending
       end
     end

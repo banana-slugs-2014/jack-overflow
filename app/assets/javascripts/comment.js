@@ -1,5 +1,5 @@
 $(function(){
-  $('a.new_comment').on('click', function(event,response){
+  $(document).on('click', 'a.new_comment', function(event,response){
     event.preventDefault()
     $(this).siblings('.comment_form').toggleClass('hidden')
   })

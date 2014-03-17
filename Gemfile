@@ -32,4 +32,5 @@ gem 'jquery-rails'
 gem 'debugger'
 gem 'pry'
 gem "binding_of_caller"
+gem "d3-rails"
 

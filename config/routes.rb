@@ -4,7 +4,7 @@ JackOverflow::Application.routes.draw do
   post '/posts', to: "posts#create", as: "create_post"
   put '/posts/:id/favorite', to: "posts#favorite", as: "favorite_post"
   put '/posts/:id', to: "posts#update", as: "update_post"
-  post 'search', to: 'searches#search'
+  get 'search', to: 'searches#search'
   resources :posts, except: [:destroy, :update] do
     resources :comments, except: [:index, :show]
     resources :votes, only: [:create, :update]

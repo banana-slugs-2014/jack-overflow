@@ -32,8 +32,7 @@ describe UsersController do
 
   context "#create" do
     context "valid params" do
-    before(:each){ post :create, user: attribs }
-      it{expect(response).to be_redirect }
+      it{expect(post :create, user: attribs).to be_redirect}
       it "should create a user " do
         expect{post :create, user: attribs }.to change { User.count }.by(1)
       end

@@ -9,14 +9,15 @@
     <%= answer.title %>
     <%= answer.body %>
     <% if post.favorite_id == answer.id %>
-    Marked as Favorite
+      Marked as Favorite
     <% end %>
+
     <% if session[:user_id] == answer.user_id %>
       <%= form_tag(favorite_post_path, :method => :put) do %>
           <%= hidden_field_tag(:answer, answer.id) %>
           <%= submit_tag("Mark as Favorite") %>
       <% end %>
-
+      <%= link_to 'New Comment', new_post_comment_path(post) %>
     <% end %>
     <%= render "votes/vote", post: answer %>
     <% answer.comments.each do |comment| %>
@@ -24,7 +25,6 @@
       <%= render "comments/comment", comment: comment %>
     <% end %>
   <% end %>
-  <%= link_to 'New Comment', new_post_comment_path(post) %>
 </div>
 
 

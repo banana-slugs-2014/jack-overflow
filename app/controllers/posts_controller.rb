@@ -22,7 +22,7 @@ class PostsController < ApplicationController
       @post = Answer.create(params[:post])
       @post.assign_question_key(params[:post][:question_id])
       @post.assign_user_key(session[:user_id])
-      render partial: "posts/post", locals: { post: @post }
+      render partial: "posts/answer", locals: { answer: @post, question: @post.question }
     else
       @post = Question.create(params[:post])
       @post.assign_user_key(session[:user_id])

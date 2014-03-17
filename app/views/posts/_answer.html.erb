@@ -1,12 +1,12 @@
 <h2>Answer: <%= answer.body %></h2>
-<% if session[:user_id] == answer.user_id %>
-<% if question.favorite_id == answer.id %>
-  <h4>Marked as Favorite</h4>
-<% end %>
-  <%= form_tag(favorite_post_path(answer), :method => :put) do %>
-      <%= hidden_field_tag(:answer, answer.id) %>
-      <%= submit_tag("Mark as Favorite") %>
+<% if session[:user_id] == Question.find(answer.question_id).user_id %>
+  <% if question.favorite_id == answer.id %>
+    <h4>Marked as Favorite</h4>
   <% end %>
-  <%= render "votes/vote", post: answer %>
-  <%= link_to 'New Comment', new_post_comment_path(question) %>
+    <%= form_tag(favorite_post_path(answer), :method => :put) do %>
+        <%= hidden_field_tag(:answer, answer.id) %>
+        <%= submit_tag("Mark as Favorite") %>
+    <% end %>
 <% end %>
+    <%= render "votes/vote", post: answer %>
+    <%= link_to 'New Comment', new_post_comment_path(question) %>

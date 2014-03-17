@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :body
 
   def vote_count
-    grab_votes ? grab_votes : "0"
+    grab_votes ? grab_votes : 0
   end
 
   def trending

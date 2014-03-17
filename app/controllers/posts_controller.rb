@@ -2,11 +2,14 @@ class PostsController < ApplicationController
   before_filter :protect_route, except: [:index, :show]
 
   def index
-    @questions = Question.all
+    if params[:sort]
+      @questions = Question.sort_questions(params[:sort])
+    else
+      @questions= Question.all
+    end
   end
 
   def show
-    #find_by_id by design to prevent the need to catch errors
     @question = Question.find_by_id(params[:id])
     redirect_to :back and return unless @question
     @answers = @question.answers

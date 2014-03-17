@@ -7,8 +7,8 @@ class CommentsController < ApplicationController
 
   def create
     comment = @post.build_comment params[:comment]
-    redirect_to post_path(@post) and return if comment.save
-    redirect_to post_path(@post), notice: 'Invalid comment!'
+    comment.save
+    render partial: 'comments/comment', locals: {comment: comment}
   end
 
   def edit

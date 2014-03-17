@@ -6,7 +6,6 @@ class PostsController < ApplicationController
       @questions = Question.sort_questions(params[:sort])
     else
       @questions= Question.all
-
     respond_to do |format|
       format.html { render :index }
       format.json { render json: Question.votes_for_each }

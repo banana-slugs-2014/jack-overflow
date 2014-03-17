@@ -1,0 +1,26 @@
+<div class="post">
+
+  <div class= "question">
+    <h1><%= @question.title ? @question.title : "" %></h1>
+    <p><%= @question.body %></p>
+    <%= render "votes/vote", post: @question %>
+  </div>
+  <hr>
+
+  <div class= "answers">
+    <% Answer.where(question_id: @question.id).each do |answer| %>
+      <div class= "answer<%= answer.id %>">
+        <%= render "posts/answer", question: @question, answer: answer %>
+      </div>
+      <div class="comments">
+        <% answer.comments.each do |comment| %>
+          <%= render "comments/comment", comment: comment %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <hr>
+  <%= render "/shared/answers_form", question_id: @question.id %>
+</div>
+

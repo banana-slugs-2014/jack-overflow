@@ -1,4 +1,4 @@
-class SessionsController < ActionController::Base
+class SessionsController < ApplicationController
 
 
   def new
@@ -8,7 +8,8 @@ class SessionsController < ActionController::Base
     @user = User.find_by_username params[:session][:username]
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      redirect_to users_path
+      session[:username] = @user.username.humanize
+      redirect_to profile_path
     else
       render :new
     end
@@ -16,7 +17,7 @@ class SessionsController < ActionController::Base
 
   def destroy
     session.clear
-    redirect_to users_path
+    redirect_to root_path
   end
 
 end

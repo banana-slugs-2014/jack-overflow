@@ -1,0 +1,14 @@
+<div class="vote_form">
+  <% if vote = post.votes.find_by_user_id(session[:user_id]) %>
+    <%= form_for :vote, url: post_vote_path(post, vote), remote: true, method: :put do |f| %>
+      <%= f.button 'Upvote', name: 'value', value: 1 %>
+      <%= f.button 'Downvote', name: 'value', value: -1 %>
+    <% end %>
+
+  <% else %>
+   <%= form_for :vote, url: post_votes_path(post), remote: true do |f| %>
+     <%= f.button 'Upvote', name: 'value', value: 1 %>
+     <%= f.button 'Downvote', name: 'value', value: -1 %>
+     <% end %>
+  <% end %>
+</div>

@@ -1,3 +1,17 @@
-<h1>Hello User!</h1>
+<div class="user_show">
+  <h1>Hello User!</h1>
 
-<%= @user.username %>
+  <%= @user.username %>
+
+  <% if @user.posts %>
+    Here are your questions!
+    <% @user.posts.each do |user_post|  %>
+      <% if user_post.question_id.nil? %>
+        <br><%= link_to user_post.body, post_path(user_post.id) %>
+        <% end %>
+    <% end %>
+  <% end  %>
+
+
+
+</div>

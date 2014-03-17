@@ -1,0 +1,6 @@
+<div class="vote">
+  <%= render "votes/vote_count", post: post %>
+  <% if session[:user_id] %>
+  <%= render "shared/vote_form", post: post %>
+  <% end %>
+</div>

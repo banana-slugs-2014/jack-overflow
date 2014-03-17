@@ -1,12 +1,17 @@
 class PostsController < ApplicationController
+  before_filter :protect_route, except: [:index, :show]
+
   def index
-    @questions = Post.where(parent_id: nil)
+    if params[:sort]
+      @questions = Question.sort_questions(params[:sort])
+    else
+      @questions= Question.all
+    end
   end
 
   def show
-    #by design to prevent the need to catch errors
-    @question = Post.find_by_id(params[:id])
-    redirect_to root_path and return unless @question
+    @question = Question.find_by_id(params[:id])
+    redirect_to :back and return unless @question
     @answers = @question.answers
   end
 
@@ -15,23 +20,31 @@ class PostsController < ApplicationController
   end
 
   def create
-
+    # html5 validation for blank form
+    if params[:post][:question_id]
+      @post = Answer.create(params[:post])
+      @post.assign_question_key(params[:post][:question_id])
+      @post.assign_user_key(session[:user_id])
+      render partial: "posts/answer", locals: { answer: @post, question: @post.question }
+    else
+      @post = Question.create(params[:post])
+      @post.assign_user_key(session[:user_id])
+      redirect_to post_path(@post.id)
+    end
   end
 
   def edit
     @post = Post.find(params[:id])
   end
 
-  def update #helper method to determine Q/A?
+  def update
     @post = Post.find(params[:id])
-    if @post.update_attributes(params[:post])
-      if @post.parent_id.nil?
-        redirect_to(post_path(@post.id))
-      else
-        redirect_to(post_path(@post.parent_id))
-      end
-    else
-      redirect_to(edit_post_path(params[:id]))
-    end
+    redirect_to post_path(@post.update_router(params[:post]))
+  end
+
+  def favorite
+    @answer = Answer.find(params[:answer])
+    @answer.question.assign_favorite(@answer.id)
+    redirect_to post_path(@answer.question)
   end
 end

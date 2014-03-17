@@ -29,12 +29,6 @@ class Post < ActiveRecord::Base
     return question_id if self.is_a? Answer
   end
 
-  def create_router #self by design
-    return :back unless save
-    return id if self.is_a? Question
-    return question_id if self.is_a? Answer
-  end
-
   def build_comment(comment)
     comments.build(comment)
   end

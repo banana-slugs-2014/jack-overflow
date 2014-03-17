@@ -1,5 +1,8 @@
 $(function(){
-  $('.vote').on("ajax:success", function(e, response){
-    $(this).html(response);
+
+  $(document).on("ajax:success", '.vote',function(e, response){
+    $(this).html(response)
   });
+
+
 });

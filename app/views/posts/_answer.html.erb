@@ -1,22 +1,26 @@
-<div class= "answer<%= answer.id %>">
-<h2>Answer: <%= answer.body %></h2>
-<% if session[:user_id] == Question.find(answer.question_id).user_id %>
+<div class="answer-divider">
+  <div class= "answer<%= answer.id %>">
+    <h3>Answer: <%= answer.body %></h3>
+      <% if session[:user_id] == Question.find(answer.question_id).user_id %>
+          <%= form_tag(favorite_post_path(answer), :method => :put) do %>
+              <%= hidden_field_tag(:answer, answer.id) %>
+              <%= submit_tag("Mark as Favorite") %>
+          <% end %>
+      <% end %>
 
-    <%= form_tag(favorite_post_path(answer), :method => :put) do %>
-        <%= hidden_field_tag(:answer, answer.id) %>
-        <%= submit_tag("Mark as Favorite") %>
+      <% if question.favorite_id == answer.id %>
+          <h1>Marked as Favorite</h1>
+          <img src="http://i.imgur.com/hPDZFOh.gif"></img>
+      <% end %>
+    <%= render "votes/vote", post: answer %>
+  </div>
+
+  <div class="comments">
+    <%= link_to 'New Comment', '#', remote: true, class: "new_comment" %>
+    <h3><em>Comments</em></h3>
+    <%= render "shared/comment_form", answer: answer %>
+    <% answer.comments.each do |comment| %>
+      <%= render "comments/comment", comment: comment %>
     <% end %>
-<% end %>
-<% if question.favorite_id == answer.id %>
-    <h4>Marked as Favorite</h4>
-<% end %>
-<%= render "votes/vote", post: answer %>
-</div>
-
-<div class="comments">
-  <%= link_to 'New Comment', '#', remote: true, class: "new_comment" %>
-  <%= render "shared/comment_form", answer: answer %>
-  <% answer.comments.each do |comment| %>
-    <%= render "comments/comment", comment: comment %>
-  <% end %>
+  </div>
 </div>

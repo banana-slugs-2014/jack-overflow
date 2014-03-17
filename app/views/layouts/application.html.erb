@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JackOverflow</title>
+  <title>JackOverflow</title
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+
+
 <%= render "shared/nav", user: session[:user_id] %>
-<%= yield %>
+
+<div id="header">
+  <%= render 'shared/search' %>
+    <%= form_tag( "/posts", :method => "get", class: "search") do %>
+      <%= hidden_field_tag :sort, "by_time" %>
+      <%= submit_tag "Sort By Time" %>
+    <% end %>
+    <%= form_tag( "/posts", :method => "get", class: "search") do %>
+      <%= hidden_field_tag :sort, "by_vote_count" %>
+      <%= submit_tag "Sort By Votes" %>
+    <% end %>
+    <%= form_tag( "/posts", :method => "get", class: "search") do %>
+      <%= hidden_field_tag :sort, "by_trending" %>
+      <%= submit_tag "Sort By Trending" %>
+    <% end %>
+  </ul>
+</div>
+<div id="body">
+  <%= yield %>
+</div>
 
 </body>
 </html>

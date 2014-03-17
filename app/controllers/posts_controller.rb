@@ -16,7 +16,11 @@ class PostsController < ApplicationController
   def show
     @question = Question.find_by_id(params[:id])
     redirect_to :back and return unless @question
-    @answers = @question.answers
+    @answers = @question.answers.sort_by(&:vote_count).reverse
+    @favorite_answer = Answer.find_by_id(@question.favorite_id)
+    if @favorite_answer
+      @answers -= [@favorite_answer]
+    end
   end
 
   def new

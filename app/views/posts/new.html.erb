@@ -1,12 +1,10 @@
-<h1>Create your question!</h1>
+<h1 class="create_your_question">Create your question!</h1>
 
 <%= form_for @post do |f| %>
 
-  <%= f.label :title %><p>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, placeholder: "Title" %>
 
-  <%= f.label :body %>
-  <%= f.text_area :body %>
+  <%= f.text_area :body, placeholder: "Body" %>
 
   <%= f.submit %>
 <% end %>

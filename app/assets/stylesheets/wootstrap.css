@@ -1,0 +1,286 @@
+/*=============================
+  Layouts will all be id's (#)
+ =============================*/
+
+/*Potential Fixed Width of Screen*/
+  html { min-width: 925px;}
+
+  html, body div , p{
+    margin: auto 0 auto;
+    padding: 0;
+    border: 0;
+  }
+
+
+/*Header Footer Body layoutp*/
+  #header, #footer, #body {
+    margin: auto;
+  }
+
+/*Fixed vs Non-fixed layouts*/
+
+  #header {
+    margin-top: 6%;
+    text-align: center;
+  }
+
+  #body {
+    width: 100%;
+    padding-top: 5%;
+    text-align: center;
+  }
+  #sidebar {
+    width: 20%;
+    float: right;
+  }
+
+  .l-fixed #body {
+    width: 600px;
+    float: left;
+  }
+
+  .l-fixed #sidebar {
+    width: 200px;
+    float: right;
+  }
+
+/*Custom Body*/
+
+body#wootstrap{
+  background-color: #000000;
+  background-repeat: repeat y
+}
+
+
+/*=============================
+  Modules will all be classes (.)
+ =============================*/
+
+
+/*==========================*/
+        /*Button*/
+/*==========================*/
+
+.answer-divider {
+  margin-top: 10px;
+  padding-top: 10px;
+  height: 100%;
+  background-color: #e74c3c;
+  color: white;
+}
+
+.search {
+  height: 48px;
+
+}
+.search input {
+  background-color: #16a085;
+  height: 45px;
+  width: 20%;
+}
+
+.question {
+  background-color: #16a085;
+  color: white;
+}
+
+
+.comment_body {
+  color: #2c3e50;
+}
+a.new_comment {
+  color: #ecf0f1;
+}
+
+.question_graph{
+  color: #ecf0f1;
+}
+a.next_question {
+  display: none;
+  color: white;
+}
+textarea {
+    margin: 1%;
+    border: none;
+    text-align: center;
+    background-color: #34495e;
+    color: #ecf0f1;
+    border-radius: 2px;
+    height: 70px;
+    width: 80%;
+}
+
+.answers{
+  background-color: #ecf0f1;
+  margin-bottom: 10px;
+}
+
+
+body ul .post {
+  background-color: #16a085;
+  width: 50%;
+  height: 65px;
+  margin: auto;
+  text-align: center;
+}
+
+div .user_show a {
+  color: #ecf0f1;
+}
+å
+.create_your_question {
+  color: #ecf0f1;
+}
+.list_question {
+  margin-top: 5px;
+  text-align: center;
+}
+
+.list_question a{
+  margin-top: 5px;
+}
+
+button {
+margin: 1%;
+border: none;
+text-align: center;
+background-color: #34495e;
+color: #ecf0f1;
+border-radius: 2px;
+height: 25px;
+width: 80px;
+}
+
+input {
+margin: 1%;
+border: none;
+text-align: center;
+background-color: #34495e;
+color: #ecf0f1;
+border-radius: 2px;
+height: 50px;
+width: 20%;
+}
+
+input .questions_list {
+margin: 1%;
+border: none;
+text-align: center;
+background-color: #34495e;
+color: #ecf0f1;
+border-radius: 2px;
+height: 50px;
+width: 15%;
+}
+
+
+.input {
+margin: 1%;
+border: none;
+text-align: center;
+background-color: #34495e;
+color: #ecf0f1;
+border-radius: 2px;
+height: 50px;
+width: 80%;
+}
+
+.btn-type {
+margin: 5px 0 5px 0;
+height: 40px;
+width: 90px;
+background-color: #27ae60;
+border-radius: 3px;
+border: none;
+box-sizing: none;
+}
+
+.btn-type-survey {
+margin: 2px 0 2px 0;
+height: 60px;
+width: 110px;
+background-color: #27ae60;
+border-radius: 3px;
+border: none;
+box-sizing: none;
+}
+
+
+
+/*==========================*/
+        /*Navbar*/
+/*==========================*/
+
+.wootstrap-navbar{
+  height: 55px;
+  width: 100%;
+  background-color: #3d4f63; /*#2c3e50*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-bottom: 5%;
+}
+
+ul .wootstrap-home-icon{
+  text-align: left;
+  color: #e67e22;
+  width: 10%;
+}
+
+li .wootstrap-home-icon{
+  text-align: right;
+}
+
+
+
+nav {
+  height: 55px;
+  width: 100%;
+  background-color: #2c3e50; /*#2c3e50*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-bottom: 5%;
+}
+ul {
+  text-align: left;
+  padding-left: 30px;
+  padding-top: 10px;
+  height: 55px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
+li {
+  color: #34495e;
+  list-style: none;
+  display: inline;
+  margin: 0;
+  height: 65px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 25px;
+  padding-bottom: 21px;
+  font-size: 1.3em;
+}
+
+nav li:hover{
+  background-color: #2980b9;
+}
+
+li a {
+  color: #ecf0f1;
+  text-decoration: none;
+}
+
+.wootstrap-active {
+  background-color: #ed6454;
+
+}
+/*==========================*/
+        /* End Navbar*/
+/*==========================*/
+
+

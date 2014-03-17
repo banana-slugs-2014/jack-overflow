@@ -8,14 +8,11 @@ class VotesController < ApplicationController
       render partial: 'vote', locals: { post: vote.post }
   end
 
-  # def update
-  #   vote = User.find(session[:user_id]).votes.where(id: params[:id],  post_id: params[:post_id] ).first
-  #   if vote.value = params[:value]
-  #     vote.save
-  #     render partial: 'vote', locals: { post: vote.post }
-  #   elsif new_vote = User.find(session[:user_id]).votes.build(value: params[:value].to_i, post_id: params[:post_id])
-  #     render partial: 'vote', locals: { post: new_vote.post }
-  #   end
-  # end
+  def update
+    vote = User.find(session[:user_id]).votes.where(id: params[:id],  post_id: params[:post_id] ).first
+    vote.value = params[:value]
+       vote.save
+    render partial: 'vote', locals: { post: vote.post }
+  end
 
 end

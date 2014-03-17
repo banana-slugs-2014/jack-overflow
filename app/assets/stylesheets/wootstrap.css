@@ -20,16 +20,13 @@
 
   }
 
-  #body {
-  }
-
 /*Fixed vs Non-fixed layouts*/
   #body {
     width: 80%;
     float: middle;
     color: white;
     position: relative;
-    padding-top: 15%;
+    padding-top: 5%;
   }
 
   #sidebar {
@@ -100,6 +97,7 @@ box-sizing: none;
 /*==========================*/
         /*Navbar*/
 /*==========================*/
+
 .wootstrap-navbar{
   height: 55px;
   width: 100%;
@@ -117,12 +115,33 @@ ul .wootstrap-home-icon{
 }
 
 li .wootstra-home-icon{
-  text-align: left;
+  text-align: right;
 }
 
+#header {
+  margin-top: 10%;
+
+  text-align: center
+}
+
+nav {
+  height: 55px;
+  width: 100%;
+  background-color: #3d4f63; /*#2c3e50*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-bottom: 5%;
+}
 ul {
-  text-align: right;
-  padding-right: 30px;
+  text-align: left;
+  padding-left: 30px;
+  padding-top: 10px;
+  height: 55px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  margin: 0;
 }
 
 li {
@@ -140,6 +159,7 @@ li {
 
 li:hover{
   background-color: #2980b9;
+  height: 55px;
 }
 
 li a {

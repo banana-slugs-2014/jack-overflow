@@ -8,10 +8,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+
+
 <%= render "shared/nav", user: session[:user_id] %>
+
+<div id="header">
+  <%= render 'shared/search' %>
+</div>
 <div id="body">
-<%= render 'shared/search' %>
-<%= yield %>
+  <%= yield %>
 </div>
 
 </body>

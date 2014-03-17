@@ -1,6 +1,6 @@
 <div class="post">
 
-  <div class= "question">
+  <div class= "container">
     <h1><%= @question.title ? @question.title : "" %></h1>
     <p><%= @question.body %></p>
     <%= render "votes/vote", post: @question %>
@@ -12,7 +12,7 @@
       <div class= "answer<%= answer.id %>">
         <%= render "posts/answer", question: @question, answer: answer %>
       </div>
-      <div class="comments">
+      <div class="container">
         <%= link_to 'New Comment', '#', remote: true, class: "new_comment" %>
         <%= render "shared/comment_form", answer: answer %>
         <% answer.comments.each do |comment| %>

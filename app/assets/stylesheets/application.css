@@ -13,24 +13,29 @@
  */
 
 
-body {
-  background-image: url:('http://patdollard.com/wp-content/uploads/2013/09/jack-nicholson.jpeg');
-}
 
 .container {
   width: 70%;
-  background-color: #0DFAFF;
+  background-color: #FCF6CF;
   border: 1px solid black;
   height: auto;
   margin: 0 auto;
   padding: 25px 100px;
  }
 
-h1{
-
+footer {
+  text-align: center;
+  font-size: .5em;
 }
 
-.header h1{
-
+.navbar {
+  width: 100%;
+  margin-top: -40px;
+  width: 100%;
+  text-align: right;
 }
-
+.navbar li {
+  list-style: none;
+  display: inline;
+  padding: 25px;
+}

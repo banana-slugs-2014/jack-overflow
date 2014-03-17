@@ -1,7 +1,6 @@
 <div>
   <%= form_tag( "/search", :method => "get") do %>
-    <%= label_tag %>
-    <%= text_field_tag :search_term %>
+    <%= text_field_tag :search_term, nil, placeholder: "Enter a question" %>
     <%= submit_tag "Search JackOverflow!" %>
   <% end %>
 </div>

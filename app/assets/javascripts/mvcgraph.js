@@ -50,7 +50,7 @@ App.Controller.prototype = {
     var controller = this;
     $.ajax({
       type: 'get',
-      url: 'posts/index',
+      url: '/',
       dataType: 'json'
     }).done(function(resp){
       console.log(resp);
@@ -102,19 +102,21 @@ App.Graph.prototype = {
           width: scaler.xScale.rangeBand(),
           y: function(d){ return scaler.svgHeight - scaler.yScale(d);},
           height: function(d, i){ return scaler.yScale(d);},
-          fill: function(d){ return "rgb(0, 0, " + Math.floor(d*10) + ")"; }
+          fill: function(d){ return "rgb(22, 160, " + Math.floor(d*10) + ")"; }
+
+
         })
         .on('mouseover',function(d){
            d3.select(this)
              .transition()
              .duration(250)
-             .attr("fill","rgb(" + Math.floor(d) + ",0,0)");
+             .attr("fill","rgb(" + Math.floor(d) + ",160, 133)");
         })
         .on('mouseout',function(d){
            d3.select(this)
              .transition()
              .duration(250)
-             .attr("fill","rgb(0, 0, " + Math.floor(d*10) + ")");
+             .attr("fill","rgb(22, 160, " + Math.floor(d*10) + ")");
         });
   },
   populateLabel: function(dataset){

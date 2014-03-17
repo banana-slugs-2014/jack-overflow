@@ -20,7 +20,7 @@
       <%= link_to 'New Comment', new_post_comment_path(post) %>
     <% end %>
     <%= render "votes/vote", post: answer %>
-    <% answer.comments.each do |comment| %>
+    <% answer.comments.each do |comment| %>`
       <h5> COMMENTS </h5>
       <%= render "comments/comment", comment: comment %>
     <% end %>

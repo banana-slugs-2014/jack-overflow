@@ -3,7 +3,7 @@
  =============================*/
 
 /*Potential Fixed Width of Screen*/
-  /*html { min-width: 925px;}*/
+  html { min-width: 925px;}
 
   html, body div , p{
     margin: auto 0 auto;
@@ -60,6 +60,15 @@ body#wootstrap{
 /*==========================*/
         /*Button*/
 /*==========================*/
+
+.answer-divider {
+  margin-top: 10px;
+  padding-top: 10px;
+  height: 100%;
+  background-color: #e74c3c;
+  color: white;
+}
+
 .search {
   height: 48px;
 
@@ -76,6 +85,20 @@ body#wootstrap{
 }
 
 
+.comment_body {
+  color: #2c3e50;
+}
+a.new_comment {
+  color: #ecf0f1;
+}
+
+.question_graph{
+  color: #ecf0f1;
+}
+a.next_question {
+  display: none;
+  color: white;
+}
 textarea {
     margin: 1%;
     border: none;
@@ -88,29 +111,26 @@ textarea {
 }
 
 .answers{
-  margin-top: 10px;
-  padding-top: 10px;
-  height: 100%;
   background-color: #ecf0f1;
-  color: white;
-
-}
-
-
-
-.answers{
-  background-color: #c0392b;
   margin-bottom: 10px;
 }
 
+
 body ul .post {
-  background-color: #7f8c8d;
+  background-color: #16a085;
   width: 50%;
   height: 65px;
   margin: auto;
   text-align: center;
 }
 
+div .user_show a {
+  color: #ecf0f1;
+}
+å
+.create_your_question {
+  color: #ecf0f1;
+}
 .list_question {
   margin-top: 5px;
   text-align: center;
@@ -118,6 +138,17 @@ body ul .post {
 
 .list_question a{
   margin-top: 5px;
+}
+
+button {
+margin: 1%;
+border: none;
+text-align: center;
+background-color: #34495e;
+color: #ecf0f1;
+border-radius: 2px;
+height: 25px;
+width: 80px;
 }
 
 input {

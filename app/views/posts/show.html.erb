@@ -1,14 +1,15 @@
 <div class="post">
 
   <div class= "question">
-    <h1><%= @question.title ? @question.title : "" %></h1>
-    <p><%= @question.body %></p>
+    <h3>JackOverflow Question</h3>
+    <h4><%= @question.title ? @question.title : "" %></h4>
+    <h5><%= @question.body %></h3>
     <%= render "votes/vote", post: @question %>
   </div>
 
   <div class= "answers">
-    <% Answer.where(question_id: @question.id).each do |answer| %>
-        <%= render "posts/answer", question: @question, answer: answer %>
+    <% @answers.each do |answer| %>
+          <%= render "posts/answer", question: @question, answer: answer %>
     <% end %>
   </div>
 

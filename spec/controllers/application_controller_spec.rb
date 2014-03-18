@@ -12,7 +12,7 @@ describe ApplicationController do
 
     context "#current_user" do
       it "should return a current user id" do
-        expect(subject.current_user.id).to eq myuser.id
+        expect(subject.current_user).to eq myuser
       end
     end
   end

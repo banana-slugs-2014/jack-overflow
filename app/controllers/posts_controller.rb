@@ -2,11 +2,7 @@ class PostsController < ApplicationController
   before_filter :protect_route, except: [:index, :show]
 
   def index
-    if params[:sort]
-      @questions = Question.sort_questions(params[:sort])
-    else
-      @questions= Question.all
-    end
+    @questions = Question.sort_questions(params[:sort])
     respond_to do |format|
       format.html { render :index }
       format.json { render json: Question.votes_for_each }
@@ -14,10 +10,11 @@ class PostsController < ApplicationController
   end
 
   def show
-    @question = Question.find_by_id(params[:id])
-    redirect_to :back and return unless @question
-    @answers = @question.answers.sort_by(&:vote_count).reverse
-    @favorite_answer = Answer.find_by_id(@question.favorite_id)
+    @post = params[:type].constantize.find parmas[:id]
+
+    redirect_to :back and return unless @post
+    @answers = @post.answers.sort_by(&:vote_count).reverse
+    @favorite_answer = @post.favorite
     if @favorite_answer
       @answers -= [@favorite_answer]
     end
@@ -29,6 +26,7 @@ class PostsController < ApplicationController
 
   def create
     # html5 validation for blank form
+    # use the same logic of .constantize as the show.
     if params[:post][:question_id]
       @post = Answer.create(params[:post])
       @post.assign_question_key(params[:post][:question_id])
@@ -46,6 +44,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    # this line repeats, move it to a before_filter
     @post = Post.find(params[:id])
     redirect_to post_path(@post.update_router(params[:post]))
   end

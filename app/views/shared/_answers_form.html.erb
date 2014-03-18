@@ -1,5 +1,5 @@
 <div class="answer_form">
-  <%= form_for :post, url: create_post_path, remote: true do |f| %>
+  <%= form_for :post, url: create_post_path, :html_options => {:class => "jdjdj"}, remote: true do |f| %>
 
     <%= f.hidden_field :question_id, {value: question_id} %>
 

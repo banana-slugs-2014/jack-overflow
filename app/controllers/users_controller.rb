@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :grab_user, only: [:edit, :show]
-  before_filter :get_user, only: [:update, :destroy]
-
+  before_filter :protect_route, :except => [:show, :new, :create]
   def index
     @users = User.all
   end
@@ -11,35 +9,27 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find params[:id]
   end
 
   def create
-    @user = User.new(username: params[:user][:username])
-    @user.password = params[:user][:password]
-    @user.save ? (redirect_to root_path) : (render :new)
-  end
-
-  def edit
+    @user = User.new params[:user]
+    if @user.save
+      redirect_to(root_path)
+      login @user
+    else
+      render(:new)
+    end
   end
 
   def update
-    @user.username = params[:user][:username]
+    current_user.username = params[:user][:username]
+    # smae as create
     @user.save ? (redirect_to user_path(@user)) : (render :edit)
   end
 
   def destroy
-    @user.destroy
+    current_user.destroy
     redirect_to root_path
   end
-
-  private
-
-  def grab_user
-    @user = !params[:id].nil? ? User.find(params[:user]) : User.find(session[:user_id])
-  end
-
-  def get_user
-    @user = User.find(params[:id])
-  end
-
 end

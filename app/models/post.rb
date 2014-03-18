@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :body
 
   def vote_count
-    grab_votes ? grab_votes : 0
+    grab_votes
   end
 
   def trending
@@ -19,10 +19,11 @@ class Post < ActiveRecord::Base
     descendants.map{ |c| c.to_s }.sort
   end
 
-  def assign_user_key(user_id)
-    User.find(user_id).posts << self
+  def assign_user_key(user)
+    self.user = user # this has no value
   end
 
+  # this smells bad
   def update_router(attribs) #self by design
     return :back unless update_attributes(attribs)
     return id if self.is_a? Question
@@ -40,7 +41,7 @@ class Post < ActiveRecord::Base
   private
 
   def grab_votes
-    votes.pluck(:value).inject(&:+)
+    votes.pluck(:value).inject(&:+) || 0
   end
 end
 

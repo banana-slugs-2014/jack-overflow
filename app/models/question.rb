@@ -10,16 +10,14 @@ class Question < Post
   class << self
 
     def votes_for_each
-      votes = []
-      questions = Question.all
-      questions.each do |q|
+       Question.all.inject([]) do |votes, q|
         votes.push(q.vote_count)
+        votes
       end
-      votes
     end
 
 
-    def sort_questions(how)
+    def sort_questions(how="all")
       case how
       when "by_time"
         sort_by_time
@@ -27,6 +25,8 @@ class Question < Post
         sort_by_vote_count
       when "by_trending"
         sort_by_trending
+      else
+        all
       end
     end
 

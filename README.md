@@ -18,7 +18,7 @@ d3.js is a thought-provoking and exciting library for data visualization.
 
 ### App Hosting
 
-The app is hosted at jackoverflow.herokuapp.com. Please check it out and submit a pull request to extend the app or patch a feature if you would like to contribute!
+The app is hosted at jackoverflow.herokuapp.com. It may take a moment to load. Please check it out and submit a pull request to extend the app or patch a feature if you would like to contribute!
 
 ### License
 

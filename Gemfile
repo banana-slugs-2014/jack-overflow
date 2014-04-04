@@ -4,6 +4,7 @@ gem 'rails', '3.2.13'
 gem 'pg'
 gem 'bcrypt-ruby', '~> 3.0.0 '
 gem 'simplecov', :require => false, :group => :test
+gem 'faker'
 
 group :assets do
   gem 'uglifier', '>= 1.0.3'
@@ -22,7 +23,6 @@ end
 group :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
-  gem 'faker'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'database_cleaner'

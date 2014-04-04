@@ -1,4 +1,4 @@
-# Jack Overflow [App Site](http://www.jackoverflow.herokuapp.com)
+# Jack Overflow [App Site](http://jackoverflow.herokuapp.com)
 
 The purpose of this project is to create a stackoverflow clone while practicing good web design principles.
 
